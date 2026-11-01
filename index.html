@@ -43,6 +43,7 @@ input,select,textarea{width:100%;min-height:52px;padding:13px 14px;border:2px so
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--sapphire-deep);box-shadow:0 0 0 3px rgba(127,178,232,.25)}
 textarea{min-height:90px;resize:vertical}
 input[type=file]{min-height:0;border:2px dashed var(--sapphire);background:#f4f9ff;padding:12px}
+input[type=date]{min-height:52px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:640px){.row{grid-template-columns:1fr}}
 .btn{display:inline-block;margin-top:14px;min-height:56px;padding:14px 26px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--sapphire),var(--sapphire-deep));color:#fff;font-family:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(74,134,197,.35)}
@@ -59,6 +60,7 @@ input[type=file]{min-height:0;border:2px dashed var(--sapphire);background:#f4f9
 .statusbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .statusbtns button{flex:1 1 90px;min-height:48px;padding:9px 12px;border-radius:999px;border:2px solid var(--sapphire);background:#fff;cursor:pointer;font-family:inherit;font-size:.98rem;font-weight:700;color:var(--sapphire-dark)}
 .statusbtns button.on{background:linear-gradient(135deg,var(--sapphire),var(--sapphire-deep));color:#fff;border-color:var(--sapphire-deep)}
+.pubbox{background:#f2f7fc;border:1px solid var(--line);border-radius:14px;padding:6px 14px 14px;margin-top:12px}
 .thumbs{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
 .thumb{width:110px;text-align:center;font-size:.78rem;color:var(--soft)}
 .thumb img{width:110px;height:196px;object-fit:cover;border-radius:14px;border:2px solid var(--line);background:#eef4fa}
@@ -79,128 +81,245 @@ ol.tight{line-height:1.65;margin:8px 0;padding-left:22px}
 <div class="wrap">
   <header class="hero">
     <h1>🦋 SKOOL FARM 🦋</h1>
-    <p class="sub">Your control panel for The Glam Vault on Skool - intake, Character Vault, solo agents, and Queue, all in one place. Community posts, announcements, prompt posts, freebies, encouragement, celebrations, and Classroom lesson packages under Live Resources.</p>
+    <p class="sub">Your control panel for running The Glam Vault on Skool - community posts, Classroom lessons, challenges, engagement, Work Hours, and reusable resources, all in one place. Five specialists do the work, with a small video side tool for lesson videos.</p>
     <div class="pills">
       <span class="pill">The Glam Vault</span>
-      <span class="pill">5 agents</span>
-      <span class="pill">7 modes</span>
+      <span class="pill">5 specialists</span>
+      <span class="pill">7 content types</span>
       <span class="pill">Work Hours: Tue + Thu 6-7 PM ET</span>
     </div>
   </header>
 
   <nav class="tabs">
     <button data-tab="home" class="active">Home</button>
-    <button data-tab="intake">Skool Intake Form</button>
-    <button data-tab="vault">Character Vault <span class="badge" id="vaultBadge">0</span></button>
-    <button data-tab="solo">Solo Agent Forms</button>
+    <button data-tab="intake">Community Intake</button>
+    <button data-tab="specialists">Specialists</button>
+    <button data-tab="resources">Resources <span class="badge" id="resBadge">0</span></button>
+    <button data-tab="video">Video Tool <span class="badge" id="vaultBadge">0</span></button>
     <button data-tab="queue">Queue <span class="badge" id="queueBadge">0</span></button>
   </nav>
 
   <!-- HOME -->
   <section class="page active" id="page-home">
     <h2>How this farm works</h2>
-    <p>This dashboard holds my <strong>Skool Intake Form</strong>, a <strong>Character Vault</strong> for my locked characters, <strong>solo forms for each of my 5 agents</strong>, and a <strong>Queue</strong> for my runs. Its job is to produce Skool community packages for my community <strong>The Glam Vault</strong> (https://www.skool.com/the-glam-vault-9512). After I submit a run, my AI runs the farm WITH me in chat and brings the finished community package back for my approval.</p>
-    <div class="warn"><strong>Plain honesty:</strong> this dashboard is a control panel only (intake, vault, queue). It does not browse, generate images, make videos, access Skool, or post by itself. The work happens in chat from the Run in Chat prompts. Nothing is ever posted automatically. Posting to Skool always needs my separate approval.</div>
+    <p>This dashboard runs your Skool community <strong>The Glam Vault</strong> (https://www.skool.com/the-glam-vault-9512): planning community posts, building Classroom lessons, designing challenges, keeping members talking and celebrated, planning Work Hours, and keeping reusable resources in one place. After you submit a job, your AI runs it WITH you in chat and brings the finished post, lesson, or package back for your approval.</p>
+    <div class="warn"><strong>Plain honesty:</strong> this dashboard is your control panel. It does not access Skool, browse, generate, or post by itself - the work happens in chat from the Prepare in Chat prompts. NOTHING is ever posted automatically. Posting to Skool always needs your separate approval.</div>
 
-    <h3>The 5 agents, in order</h3>
+    <h3>The 5 specialists, in order</h3>
     <ul class="tight">
-      <li><strong>Agent 1 - Pinterest Scout:</strong> searches Pinterest (guest view, no sign-in) for outfits and products for the chosen mode and topic, especially products with an Amazon link, and for the visuals and topics my Skool members are saving right now. Picks the outfit or product and copies its picture. Does not check price or availability at this step.</li>
-      <li><strong>Agent 2 - Image Agent:</strong> creates the person and avatar images in chat - character references, the outfit photo (my locked character wearing the exact Pinterest outfit), and the outfit reference sheet. All ultra realistic, real skin and hair texture, all PNG, all 9:16.</li>
-      <li><strong>Agent 3 - Story Agent:</strong> writes the hook, the shots, and the script for video posts and video lessons, and the story arc for text posts. Labels every scene with the run's one Product Presentation choice. Writes scene ACTION only for video prompts - never a description of the character.</li>
-      <li><strong>Agent 4 - Video Agent:</strong> makes the video in chat with my AI video tool, using the Consistent Character workflow below. Returns the finished video in chat for my approval. Never posts it.</li>
-      <li><strong>Agent 5 - Skool Copy Agent:</strong> writes the Skool copy package - the post title, the full post body in my voice (personable, human, plain words, heart first, saying who it is for and what to do with it), the category pick, one clear call to action, and for a lesson package a short lesson outline (lesson title, what members learn, and the steps in order). No price, discount, or sale claim unless a live price was actually verified - and no buy talk at all when the copy is for inside The Glam Vault.</li>
+      <li><strong>1. Community Content Planner:</strong> plans and drafts community posts - prompt posts, announcements, encouragement, celebrations, spotlights - in your voice, each with a title, full body, category pick, and one clear call to action.</li>
+      <li><strong>2. Work Hours Coordinator:</strong> plans your Tuesday and Thursday 6 to 7 PM ET Work Hours sessions - turns a topic and member requests into an ordered build-along agenda with timing and a short prep list.</li>
+      <li><strong>3. Lesson &amp; Tutorial Builder:</strong> builds Classroom lesson packages for Live Resources - lesson title, folder title (dated pattern, 50 characters max), what members learn, steps in order, any resource links, plus the announcement post that points members to it.</li>
+      <li><strong>4. Creative Challenge Designer:</strong> designs member challenges - plain rules, how to enter by posting, daily or step prompts, and how winners get celebrated (only the recognition you actually enter - never invent a prize).</li>
+      <li><strong>5. Engagement Assistant:</strong> drafts welcomes, wins celebrations, encouragement, and conversation starters, and replies in your voice. If a job needs an actual member comment or post and you did not paste it, the job saves as "Needs details" in its prompt - never invent what a member said.</li>
     </ul>
 
-    <h3>The 7 modes</h3>
+    <h3>The 7 content types</h3>
     <ul class="tight">
-      <li><strong>1. Announcement / New Drop</strong> - a new lesson, resource, or farm is live in the Vault. Category: ANNOUNCEMENTS.</li>
-      <li><strong>2. Prompt Post</strong> - a prompt members can copy, run, and share results from. Category: PROMPTS.</li>
-      <li><strong>3. Freebie / Resource Drop</strong> - a free resource for members. Category: FREEBIES (or a Live Resources lesson package).</li>
-      <li><strong>4. Lesson / Tutorial</strong> - a teach-it step by step Classroom package under Live Resources, often with a video.</li>
-      <li><strong>5. Engagement / Conversation Starter</strong> - a question or share thread that gets members talking in THE HANGOUT.</li>
-      <li><strong>6. Encouragement / Celebration</strong> - kind words in Words Of Encouragement, or a wins thread in Celebrate Your Accomplishments.</li>
-      <li><strong>7. Product Spotlight</strong> - a product or resource shown off for members (Ready To Sell Products inside the Vault with no buy talk; selling copy with a shop link is for outside the Vault only).</li>
+      <li><strong>1. Announcement / New Drop</strong> - home category: ANNOUNCEMENTS.</li>
+      <li><strong>2. Prompt Post</strong> - home category: PROMPTS.</li>
+      <li><strong>3. Freebie / Resource Drop</strong> - home category: FREEBIES, or a Live Resources lesson.</li>
+      <li><strong>4. Lesson / Tutorial</strong> - Classroom - Live Resources.</li>
+      <li><strong>5. Engagement / Conversation Starter</strong> - home category: THE HANGOUT.</li>
+      <li><strong>6. Encouragement / Celebration</strong> - home category: Words Of Encouragement or Celebrate Your Accomplishments.</li>
+      <li><strong>7. Product Spotlight</strong> - home category: Ready To Sell Products (inside the Vault: shown and celebrated, no buy talk).</li>
     </ul>
 
-    <h3>The Product Presentation rule</h3>
-    <p>Every run saves ONE Product Presentation choice, right after Mode: None, Wearing the product, Holding the product, Using the product, Showing it close to camera, Sitting beside her in frame, Unboxing / opening it, Holding it up by her face, or Holding in some scenes and wearing in others. Wearing and holding never mix in the same shot. Never show her wearing an outfit while holding that same outfit on a hanger. Reject and regenerate any image that shows both. If a video needs both, use separate scenes - holding first, wearing later - never the same shot. A None run adds no presentation sentence at all.</p>
+    <h3>My real Skool categories</h3>
+    <p>Feed categories: THE HANGOUT, PROMPTS, ANNOUNCEMENTS, $2 DOLLAR TUESDAYS, FREEBIES, IMAGES, Words Of Encouragement, Celebrate Your Accomplishments, Ready To Sell Products. Every category choice on every form also offers None.</p>
+    <p>Classroom note: <strong>Live Resources</strong> is a Classroom course, not a feed category. Lessons go there, in dated folders named "MM/DD/YY - Topic". Skool folder names cap at 50 characters, so suggested folder titles stay at or under 50 characters.</p>
+    <p>Work Hours in The Glam Vault: Tuesday and Thursday, 6 to 7 PM ET. Build-along sessions - members create alongside you.</p>
+    <p>Inside The Glam Vault, member content is free for members: no buy talk, no prices, no shop links in Vault posts.</p>
 
     <h3>The Skool standing order</h3>
     <p class="note">A Skool post is not done until it has a category, one clear call to action, and - when it points somewhere - a working destination link. Inside The Glam Vault there is no buy talk.</p>
 
-    <h3>My real Skool categories</h3>
-    <p>Feed categories: THE HANGOUT, PROMPTS, ANNOUNCEMENTS, $2 DOLLAR TUESDAYS, FREEBIES, IMAGES, Words Of Encouragement, Celebrate Your Accomplishments, Ready To Sell Products. Every category choice also offers None.</p>
-    <p>Classroom note: my Classroom home for curriculum is <strong>Live Resources</strong> (a Classroom course, not a feed category). Lesson packages go there - pick "Classroom - Live Resources" instead of a feed category.</p>
-    <p>Work Hours in The Glam Vault: Tuesday and Thursday, 6 to 7 PM ET.</p>
-    <p>Inside The Glam Vault, member content is free for members: no buy talk, no prices, no shop links in Vault posts. Selling copy belongs outside the Vault.</p>
+    <h3>Your Skool connection</h3>
+    <p class="note">Your Skool is connected through the signed-in browser. Connection checked Oct 31, 2026: signed in, The Glam Vault opens in admin view. When a post or lesson is ready and you approve it, your AI can carry it into Skool on that connection and read it back to prove it landed. Nothing is posted without your OK.</p>
 
-    <h3>The workflow</h3>
-    <ol class="tight">
-      <li>Pick the outfit on Pinterest (one with an Amazon link when there is a product). Copy its picture. Scout member-loved visuals and topics the same way, in guest view.</li>
-      <li>Lock the outfit IN CHAT, not in the video tool: using my locked character's reference photos, put that character in that exact outfit in chat first. Check face match and outfit match.</li>
-      <li>Make the outfit reference sheet IN CHAT: from the approved outfit photo, one single 9:16 sheet with front, profile, and three-quarter shots of her in that outfit, all on the same photo. Save as PNG.</li>
-      <li>Build the video (when the run has one) with the Consistent Character lock: Reference One is her headshot (Slot 1). Reference Two is the chat-made outfit reference sheet. NEVER leave Reference Two empty. No character bible is needed - the reference photos ARE the lock. Do not paste descriptions of her into scene prompts.</li>
-      <li>Create the scenes from that lock, in script order, 9:16.</li>
-      <li>The Skool Copy Agent finishes the package: post title, full post body, category pick, one clear call to action, and a lesson outline when the run is a lesson package.</li>
-      <li>Return the finished Skool package IN CHAT for my approval. Never post, publish, or share it.</li>
-    </ol>
-
-    <h3>The scene prompt shape</h3>
-    <p>Use this for every scene, and nothing else about her: "Use the reference images and keep the character perfectly consistent. [Scene action only.] [Spoken line, if any.] Wearing the product, not holding it." The last sentence swaps to match the run's Product Presentation choice, and a None run adds no presentation sentence at all. NEVER describe her in a scene prompt - no face, hair, skin, body, or outfit description. Describing her overrides the references and creates a different girl.</p>
-
-    <h3>How Run in Chat works</h3>
-    <p>Every Queue card gets a <strong>Run in Chat</strong> button. Pressing it sets that run to "working" and opens a Run in Chat card showing the locked character, Slot 1 and Slot 2 status with thumbnails, voice, mode, Product Presentation choice and its exact prompt sentence, topic, length / format, product, reference video link, notes, Skool category, and destination link. The card has a COPY PROMPT button. The copied prompt tells the AI to run THAT exact run with THOSE exact details, nothing swapped, and to bring the finished Skool package back in chat for my approval, never posting it. There is no scheduled pickup.</p>
-    <p class="note">Queue status buttons only change the label - queued, working, or done. Changing a status does not browse, generate, access Skool, or post anything. Execution happens in chat.</p>
+    <h3>How Prepare in Chat works</h3>
+    <p>Every Queue card gets a <strong>Prepare in Chat</strong> button. Pressing it sets that job to "working" and opens a card showing every field of that job, plus a COPY PROMPT button. The copied prompt tells the AI to do THAT exact job with THOSE exact details, nothing swapped, in your voice, and to bring the finished work back in chat for your approval. When you approve a post or lesson, the prompt also tells the AI to carry it into Skool on the signed-in browser connection and read it back to prove it landed. There is no scheduled pickup.</p>
+    <p class="note">Queue status buttons only change the label - queued, working, or done. Publication status is separate: Draft, Approved, or Published and verified, and "Published and verified" only saves when a live link and a verification date are both filled in. Changing a status never posts anything.</p>
+    <p class="meta" id="homeCounts"></p>
   </section>
 
-  <!-- SKOOL INTAKE FORM -->
+  <!-- COMMUNITY INTAKE -->
   <section class="page" id="page-intake">
-    <h2>Skool Intake Form - full farm run</h2>
+    <h2>Community Intake - the full community job form</h2>
     <form id="intakeForm">
-      <label>1. Locked character picker (or create a new character)</label>
-      <select id="inCharacter"></select>
-      <p class="meta">No locked character yet? <a href="#" id="goVault">Create one in the Character Vault</a></p>
+      <label>1. Content Type</label>
+      <select id="inContentType"></select>
 
-      <label>2. Mode</label>
-      <select id="inMode"></select>
+      <label>2. Specialist to assign</label>
+      <select id="inSpecialist"></select>
 
-      <label>3. Product Presentation (ONE choice - right after Mode)</label>
-      <select id="inPresentation"></select>
-      <p class="meta sentence" id="presPreview"></p>
+      <label>3. Skool Category</label>
+      <select id="inCategory"></select>
 
       <label>4. Topic</label>
-      <input id="inTopic" required placeholder="What is this Skool post or package about?">
+      <input id="inTopic" required placeholder="What is this post, lesson, or package about?">
 
-      <label>5. Length / format</label>
-      <input id="inLength" placeholder="e.g. post only, a 30 second video post, or a full Classroom lesson package">
+      <label>5. What members get</label>
+      <textarea id="inMembersGet" placeholder="The post, lesson, or resource members receive, in plain words"></textarea>
 
-      <label>6. Product name and product link, when there is one</label>
-      <div class="row">
-        <input id="inProdName" placeholder="Product name">
-        <input id="inProdLink" placeholder="Product link">
-      </div>
+      <label>6. Destination link, when there is one</label>
+      <input id="inDestLink" placeholder="A Classroom lesson page, a community post, or - outside the Vault only - a shop page">
 
-      <label>7. Reference video link, when there is one</label>
+      <label>7. Reference link, when there is one</label>
       <input id="inRefLink" placeholder="https://...">
 
       <label>8. Notes</label>
-      <textarea id="inNotes" placeholder="Anything else my AI needs to know"></textarea>
+      <textarea id="inNotes" placeholder="Anything else your AI needs to know"></textarea>
 
-      <label>9. Skool category</label>
-      <select id="inCategory"></select>
-
-      <label>10. Destination link, when there is one</label>
-      <input id="inDestLink" placeholder="A Classroom lesson page, a community post, or - outside the Vault only - a shop page">
-
-      <button class="btn" type="submit">Save run to Queue</button>
+      <button class="btn" type="submit">Save job to Queue</button>
       <p class="ok" id="intakeSaved"></p>
     </form>
   </section>
 
-  <!-- CHARACTER VAULT -->
-  <section class="page" id="page-vault">
-    <h2>Character Vault - locked characters</h2>
-    <p class="meta">One record per locked character. Slot 1 is the headshot, one photo, 9:16. Slot 2 is the body reference sheet: ONE single 9:16 photo - not separate photos - with front, three-quarter, left profile, and right side views of the same person, same outfit, same background, all on that one photo. <strong>A character is NOT locked until BOTH slots are filled.</strong> Uploads: any image your browser can open (JPG, PNG, or a WebP your browser reads). The farm reads the file directly, shrinks a copy in the browser to a storage-sized JPG (max 1080px) when that works, and if the shrink step fails it keeps the photo exactly as read. A readable photo is never rejected. AI-created images are still PNG only. Characters are ultra realistic, with real skin texture and real hair texture. Every character is African American unless a specific existing character was named. Plus-size stays plus-size, never slimmed down. Within one video, identity, clothing, location, and lighting stay frozen from the reference photos.</p>
+  <!-- SPECIALISTS -->
+  <section class="page" id="page-specialists">
+    <h2>Specialist Forms - one specialist, one job</h2>
+    <p class="note">Every specialist form produces a clean, ready-to-copy prompt prefilled from what you entered, and saves the job to the Queue. Nothing runs by itself - the work happens in chat from Prepare in Chat.</p>
+
+    <div class="card">
+      <h4>Specialist 1 - Community Content Planner</h4>
+      <p class="meta">Plans and drafts community posts in your voice: title, full body, category pick, one clear call to action.</p>
+      <form class="spec-form" id="specForm1">
+        <label>Topic</label>
+        <input id="p1Topic" required placeholder="What is this post about?">
+        <label>Skool category</label>
+        <select id="p1Category" class="category-select"></select>
+        <label>Post goal</label>
+        <input id="p1Goal" placeholder="What should this post do - welcome, teach, get members talking, celebrate?">
+        <label>Notes</label>
+        <textarea id="p1Notes"></textarea>
+        <button class="btn" type="submit">Create prompt + save to Queue</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h4>Specialist 2 - Work Hours Coordinator</h4>
+      <p class="meta">Work Hours are Tuesday and Thursday, 6 to 7 PM ET. This specialist turns a topic and member requests into an ordered build-along agenda with timing and a short prep list.</p>
+      <form class="spec-form" id="specForm2">
+        <label>Session day</label>
+        <select id="p2Day">
+          <option>Tuesday</option>
+          <option>Thursday</option>
+          <option>None</option>
+        </select>
+        <label>Session topic</label>
+        <input id="p2Topic" required placeholder="What will members build along on?">
+        <label>Member requests (paste them here)</label>
+        <textarea id="p2Requests" placeholder="Paste the real member requests, in their words"></textarea>
+        <label>Notes</label>
+        <textarea id="p2Notes"></textarea>
+        <button class="btn" type="submit">Create prompt + save to Queue</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h4>Specialist 3 - Lesson &amp; Tutorial Builder</h4>
+      <p class="meta">Builds Classroom lesson packages for Live Resources: lesson title, folder title (dated pattern "MM/DD/YY - Topic", 50 characters max), what members learn, steps in order, resource links, plus the announcement post.</p>
+      <form class="spec-form" id="specForm3">
+        <label>Lesson topic</label>
+        <input id="p3Topic" required placeholder="What does this lesson teach?">
+        <label>What members learn</label>
+        <textarea id="p3Learn" placeholder="What will members be able to do after this lesson?"></textarea>
+        <label>Destination or resource link</label>
+        <input id="p3Link" placeholder="https://...">
+        <label>Notes</label>
+        <textarea id="p3Notes"></textarea>
+        <button class="btn" type="submit">Create prompt + save to Queue</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h4>Specialist 4 - Creative Challenge Designer</h4>
+      <p class="meta">Designs member challenges: plain rules, how to enter by posting, daily or step prompts, and how winners get celebrated. Only the recognition you actually enter - never invent a prize.</p>
+      <form class="spec-form" id="specForm4">
+        <label>Challenge theme</label>
+        <input id="p4Theme" required placeholder="What is the challenge about?">
+        <label>How many days or steps</label>
+        <input id="p4Days" placeholder="e.g. 3 days, or 5 steps">
+        <label>How members enter</label>
+        <textarea id="p4Enter" placeholder="How do members enter by posting?"></textarea>
+        <label>Recognition (exactly what you type - may be blank)</label>
+        <input id="p4Recognition" placeholder="e.g. Winners get celebrated in a shout-out post">
+        <label>Skool category</label>
+        <select id="p4Category" class="category-select"></select>
+        <label>Notes</label>
+        <textarea id="p4Notes"></textarea>
+        <button class="btn" type="submit">Create prompt + save to Queue</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h4>Specialist 5 - Engagement Assistant</h4>
+      <p class="meta">Drafts welcomes, wins celebrations, encouragement, conversation starters, and replies in your voice. If the job needs an actual member post or comment and you did not paste it, the prompt says Needs details - never invent what a member said.</p>
+      <form class="spec-form" id="specForm5">
+        <label>Thread type</label>
+        <select id="p5Thread">
+          <option>Welcome</option>
+          <option>Wins celebration</option>
+          <option>Encouragement</option>
+          <option>Conversation starter</option>
+          <option>Reply to a member</option>
+          <option>None</option>
+        </select>
+        <label>The member's post or comment, pasted (may be blank)</label>
+        <textarea id="p5MemberPost" placeholder="Paste the member's actual words here"></textarea>
+        <label>Skool category</label>
+        <select id="p5Category" class="category-select"></select>
+        <label>Notes</label>
+        <textarea id="p5Notes"></textarea>
+        <button class="btn" type="submit">Create prompt + save to Queue</button>
+      </form>
+    </div>
+
+    <div id="specOut" style="display:none">
+      <h3>Ready-to-copy specialist prompt</h3>
+      <pre class="prompt" id="specPrompt"></pre>
+      <button class="btn light" id="specCopy" type="button">Copy prompt</button>
+      <span class="ok" id="specCopied"></span>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="page" id="page-resources">
+    <h2>Resources - your reusable resource vault</h2>
+    <p class="meta">Prompts, guides, code, app links, replays, freebies, and lessons you reuse in The Glam Vault. Resources live here - they are not Queue jobs.</p>
+    <form id="resForm">
+      <label>Title</label>
+      <input id="rTitle" required placeholder="e.g. Welcome prompt pack">
+      <label>Type</label>
+      <select id="rType">
+        <option>Prompt</option>
+        <option>Guide or Code</option>
+        <option>App Link</option>
+        <option>Replay</option>
+        <option>Freebie</option>
+        <option>Lesson</option>
+        <option>Other</option>
+        <option>None</option>
+      </select>
+      <label>Link</label>
+      <input id="rLink" placeholder="https://...">
+      <label>Notes</label>
+      <textarea id="rNotes"></textarea>
+      <button class="btn" type="submit">Save resource</button>
+      <p class="ok" id="resSaved"></p>
+    </form>
+    <h3>Saved resources, newest first</h3>
+    <div id="resList"></div>
+  </section>
+
+  <!-- VIDEO TOOL -->
+  <section class="page" id="page-video">
+    <h2>Video Tool - the small side tool for lesson videos</h2>
+    <p class="meta">This one tab holds the character machinery, for lesson videos and video posts only. Community work lives on the other tabs.</p>
+
+    <h3>Character Vault - locked characters</h3>
+    <p class="meta">One record per locked character. Slot 1 is the headshot, one photo, 9:16. Slot 2 is the body reference sheet: ONE single 9:16 photo - not separate photos - with front, three-quarter, left profile, and right side views of the same person, same outfit, same background, all on that one photo. <strong>A character is NOT locked until BOTH slots are filled.</strong> Uploads: any image your browser can open. The farm reads the file directly with FileReader, shrinks a copy in the browser to a storage-sized JPG (max 1080px) when that works, and if the shrink step fails it keeps the photo exactly as read. A readable photo is never rejected. AI-created images are still PNG only. Characters are ultra realistic, with real skin texture and real hair texture. Every character is African American unless a specific existing character was named. Plus-size stays plus-size, never slimmed down. Within one video, identity, clothing, location, and lighting stay frozen from the reference photos.</p>
     <form id="vaultForm">
       <div class="row">
         <div><label>Character name</label><input id="vName" required placeholder="e.g. Rosa"></div>
@@ -216,111 +335,200 @@ ol.tight{line-height:1.65;margin:8px 0;padding-left:22px}
     </form>
     <h3>Characters</h3>
     <div id="vaultList"></div>
-  </section>
 
-  <!-- SOLO AGENT FORMS -->
-  <section class="page" id="page-solo">
-    <h2>Solo Agent Forms - one agent, one job</h2>
-    <p class="note">Every solo form produces a clean, ready-to-copy prompt for that agent job, prefilled from what you entered, and saves the job to the Queue. Nothing runs by itself - the work happens in chat.</p>
+    <h3>Video run form - a lesson video or video post</h3>
+    <form id="videoForm">
+      <label>1. Locked character picker (or create a new character)</label>
+      <select id="vCharacter"></select>
+      <p class="meta">The Product Presentation choice comes right after the character pick - one choice for the whole run.</p>
 
-    <div class="card">
-      <h4>Agent 1 - Pinterest Scout</h4>
-      <form class="solo-form" id="soloForm1">
-        <label>Character (when relevant)</label>
-        <select id="s1Character" class="character-picker"></select>
-        <label>Topic</label>
-        <input id="s1Topic" required placeholder="What should the Scout search for?">
-        <label>Notes / task details</label>
-        <textarea id="s1Notes" placeholder="Mode hints, member-loved topics, anything else"></textarea>
-        <button class="btn" type="submit">Create solo prompt + save to Queue</button>
-      </form>
-    </div>
+      <label>2. Product Presentation (ONE choice)</label>
+      <select id="vPresentation"></select>
+      <p class="meta sentence" id="presPreview"></p>
 
-    <div class="card">
-      <h4>Agent 2 - Image Agent</h4>
-      <form class="solo-form" id="soloForm2">
-        <label>Character (when relevant)</label>
-        <select id="s2Character" class="character-picker"></select>
-        <label>Topic</label>
-        <input id="s2Topic" required placeholder="What image should be created?">
-        <label>Notes / task details</label>
-        <textarea id="s2Notes" placeholder="Outfit, setting, anything else"></textarea>
-        <button class="btn" type="submit">Create solo prompt + save to Queue</button>
-      </form>
-    </div>
+      <label>3. Topic</label>
+      <input id="vTopic" required placeholder="What is this lesson video about?">
 
-    <div class="card">
-      <h4>Agent 3 - Story Agent</h4>
-      <form class="solo-form" id="soloForm3">
-        <label>Character (when relevant)</label>
-        <select id="s3Character" class="character-picker"></select>
-        <label>Product Presentation (ONE choice)</label>
-        <select id="s3Presentation" class="presentation-select"></select>
-        <label>Topic</label>
-        <input id="s3Topic" required placeholder="What is this story about?">
-        <label>Length / format</label>
-        <input id="s3Length" placeholder="e.g. a 30 second video post">
-        <label>Notes / task details</label>
-        <textarea id="s3Notes"></textarea>
-        <button class="btn" type="submit">Create solo prompt + save to Queue</button>
-      </form>
-    </div>
+      <label>4. Length</label>
+      <input id="vLength" placeholder="e.g. 30 seconds, 9:16">
 
-    <div class="card">
-      <h4>Agent 4 - Video Agent</h4>
-      <form class="solo-form" id="soloForm4">
-        <label>Character (when relevant)</label>
-        <select id="s4Character" class="character-picker"></select>
-        <label>Product Presentation (ONE choice)</label>
-        <select id="s4Presentation" class="presentation-select"></select>
-        <label>Topic</label>
-        <input id="s4Topic" required placeholder="What is this video about?">
-        <label>Length / format</label>
-        <input id="s4Length" placeholder="e.g. a 30 second video post, 9:16">
-        <label>Notes / task details</label>
-        <textarea id="s4Notes"></textarea>
-        <button class="btn" type="submit">Create solo prompt + save to Queue</button>
-      </form>
-    </div>
+      <label>5. Product name and product link, when there is one</label>
+      <div class="row">
+        <input id="vProdName" placeholder="Product name">
+        <input id="vProdLink" placeholder="Product link">
+      </div>
 
-    <div class="card">
-      <h4>Agent 5 - Skool Copy Agent</h4>
-      <form class="solo-form" id="soloForm5">
-        <label>Character (when relevant)</label>
-        <select id="s5Character" class="character-picker"></select>
-        <label>Skool category</label>
-        <select id="s5Category" class="category-select"></select>
-        <label>Topic</label>
-        <input id="s5Topic" required placeholder="What is this Skool post about?">
-        <label>Length / format</label>
-        <input id="s5Length" placeholder="e.g. post only, or a full Classroom lesson package">
-        <label>Destination link, when there is one</label>
-        <input id="s5DestLink" placeholder="https://...">
-        <label>Notes / task details</label>
-        <textarea id="s5Notes"></textarea>
-        <button class="btn" type="submit">Create solo prompt + save to Queue</button>
-      </form>
-    </div>
+      <label>6. Notes</label>
+      <textarea id="vNotes" placeholder="Anything else your AI needs to know"></textarea>
 
-    <div id="soloOut" style="display:none">
-      <h3>Ready-to-copy solo prompt</h3>
-      <pre class="prompt" id="soloPrompt"></pre>
-      <button class="btn light" id="soloCopy" type="button">Copy prompt</button>
-      <span class="ok" id="soloCopied"></span>
-    </div>
+      <button class="btn" type="submit">Save video run to Queue</button>
+      <p class="ok" id="videoSaved"></p>
+    </form>
+
+    <script>
+    /* ===== Video Tool logic - the only place the presentation machinery lives ===== */
+    var PRESENTATIONS = ["None","Wearing the product","Holding the product","Using the product","Showing it close to camera","Sitting beside her in frame","Unboxing / opening it","Holding it up by her face","Holding in some scenes and wearing in others"];
+    var PRESENTATION_SENTENCES = {
+      "None": "",
+      "Wearing the product": "Wearing the product, not holding it.",
+      "Holding the product": "Holding the product, not wearing it.",
+      "Using the product": "Using the product on camera, not just holding it.",
+      "Showing it close to camera": "Showing the product close to camera.",
+      "Sitting beside her in frame": "The product sits beside her in frame - she is not holding it or wearing it.",
+      "Unboxing / opening it": "Unboxing the product on camera.",
+      "Holding it up by her face": "Holding the product up beside her face.",
+      "Holding in some scenes and wearing in others": "Holding the product in some scenes and wearing it in others - never both in the same shot."
+    };
+    function presSentence(choice) { return PRESENTATION_SENTENCES[choice] || ""; }
+    function videoSentence(item) { return (item && item.presentationSentence) ? item.presentationSentence : presSentence(item ? item.presentation : ""); }
+    function videoCardLine(item) {
+      if (!item || !item.presentation) { return ""; }
+      var s = videoSentence(item);
+      return "Product Presentation: " + item.presentation + (s ? (" - \"" + s + "\"") : "");
+    }
+    function videoPromptLines(item) {
+      var lines = [];
+      lines.push("Character: " + (item.characterLabel || "None - create a new character"));
+      var c = (typeof characterById === "function") ? characterById(item.characterId) : null;
+      if (c) {
+        lines.push("Voice: " + (c.voice || "-"));
+        lines.push("Slot 1 - Headshot: " + (c.slot1 ? ("filled - " + c.slot1.name) : "MISSING"));
+        lines.push("Slot 2 - Body reference sheet: " + (c.slot2 ? ("filled - " + c.slot2.name) : "MISSING"));
+        lines.push("Locked: " + ((c.slot1 && c.slot2) ? "yes - both slots filled" : "no - a character is NOT locked until both slots are filled"));
+      }
+      lines.push("Product Presentation: " + (item.presentation || "None"));
+      var s = videoSentence(item);
+      if (s) { lines.push("Product Presentation sentence: \"" + s + "\""); }
+      lines.push("Scene prompt shape: \"Use the reference images and keep the character perfectly consistent. [Scene action only.] [Spoken line, if any.]" + (s ? (" " + s + "\"") : "\" - this run is None, so no presentation sentence is added."));
+      lines.push("Never describe the character in a scene prompt - no face, hair, skin, body, or outfit description. Describing her overrides the reference photos and creates a different person.");
+      lines.push("Product Presentation rule: one choice per run. Wearing and holding never mix in the same shot. Never show her wearing an outfit while holding that same outfit on a hanger - reject and regenerate any image that shows both. If a video needs both, use separate scenes - holding first, wearing later - never the same shot.");
+      lines.push("Video workflow:");
+      lines.push("1. Pick the outfit on Pinterest in guest view (one with an Amazon link when there is a product). Copy its picture.");
+      lines.push("2. Lock the outfit IN CHAT, not in the video tool: using the locked character's reference photos, put that character in that exact outfit in chat first. Check face match and outfit match.");
+      lines.push("3. Make the outfit reference sheet IN CHAT: from the approved outfit photo, one single 9:16 sheet with front, profile, and three-quarter shots of her in that outfit, all on the same photo. Save as PNG.");
+      lines.push("4. Build the video from Reference One (her headshot, Slot 1) plus Reference Two (the chat-made outfit reference sheet). NEVER leave Reference Two empty. The reference photos ARE the lock - no character description in scene prompts.");
+      lines.push("5. Create the scenes from that lock, in script order, 9:16. Every image created is PNG.");
+      lines.push("6. Return the finished video IN CHAT for Glam's approval. Never post it.");
+      return lines;
+    }
+    function presPreviewSync() {
+      var el = document.getElementById("vPresentation");
+      var pv = document.getElementById("presPreview");
+      if (!el || !pv) { return; }
+      var s = presSentence(el.value);
+      pv.textContent = s ? ("Prompt sentence: \"" + s + "\"") : "None - no presentation sentence on this run.";
+    }
+    function readSlot(fileInput, cb) {
+      var f = fileInput.files && fileInput.files[0];
+      if (!f) { cb(null); return; }
+      var r = new FileReader();
+      r.onload = function () {
+        var dataUrl = r.result;
+        var done = function (finalUrl) { cb({ dataUrl: finalUrl, name: f.name, where: "Uploaded in this dashboard (browser storage)" }); };
+        try {
+          var img = new Image();
+          img.onload = function () {
+            try {
+              var max = 1080;
+              var w = img.naturalWidth, h = img.naturalHeight;
+              if (!w || !h) { done(dataUrl); return; }
+              var scale = Math.min(1, max / Math.max(w, h));
+              if (scale >= 1) { done(dataUrl); return; }
+              var cv = document.createElement("canvas");
+              cv.width = Math.round(w * scale); cv.height = Math.round(h * scale);
+              cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+              done(cv.toDataURL("image/jpeg", 0.85));
+            } catch (e) { done(dataUrl); }
+          };
+          img.onerror = function () { done(dataUrl); };
+          img.src = dataUrl;
+        } catch (e) { done(dataUrl); }
+      };
+      r.onerror = function () { cb({ error: "Could not read that file. Try again." }); };
+      r.readAsDataURL(f);
+    }
+    function renderVault() {
+      var wrap = document.getElementById("vaultList"); if (!wrap) { return; }
+      wrap.innerHTML = "";
+      document.getElementById("vaultBadge").textContent = characters.length;
+      if (characters.length === 0) { wrap.innerHTML = '<div class="empty">The Character Vault is empty. Add your first character above. A character is NOT locked until both Slot 1 and Slot 2 are filled.</div>'; return; }
+      for (var i = 0; i < characters.length; i++) {
+        (function (c) {
+          var locked = !!(c.slot1 && c.slot2);
+          var d = document.createElement("div"); d.className = "card";
+          d.innerHTML = "<h4>Character " + c.letter + " - " + esc(c.name) + (locked ? " - LOCKED" : " - NOT LOCKED") + "</h4>" +
+            '<p class="meta">Voice: ' + esc(c.voice || "-") + "<br>Slot 1 - Headshot: " + (c.slot1 ? ("filled - " + esc(c.slot1.name)) : "missing") + "<br>Slot 2 - Body reference sheet: " + (c.slot2 ? ("filled - " + esc(c.slot2.name)) : "missing") + (locked ? "" : "<br>A character is NOT locked until both slots are filled.") + "</p>";
+          var th = document.createElement("div"); th.className = "thumbs";
+          th.innerHTML = '<div class="thumb">' + (c.slot1 ? ('<img src="' + c.slot1.dataUrl + '" alt="Slot 1 headshot">') : '<div class="missing">Slot 1 missing</div>') + "<br>Slot 1 - Headshot</div>" +
+            '<div class="thumb">' + (c.slot2 ? ('<img src="' + c.slot2.dataUrl + '" alt="Slot 2 body reference sheet">') : '<div class="missing">Slot 2 missing</div>') + "<br>Slot 2 - Body reference sheet</div>";
+          d.appendChild(th);
+          var del = document.createElement("button"); del.className = "btn light small"; del.type = "button"; del.textContent = "Remove character";
+          del.addEventListener("click", function () {
+            characters = characters.filter(function (x) { return x.id !== c.id; });
+            for (var k = 0; k < characters.length; k++) { characters[k].letter = letterFor(k); }
+            saveAll();
+          });
+          d.appendChild(del);
+          wrap.appendChild(d);
+        })(characters[i]);
+      }
+    }
+    document.getElementById("vaultForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var errEl = document.getElementById("vaultErr"); errEl.textContent = "";
+      document.getElementById("vaultOk").textContent = "";
+      var name = document.getElementById("vName").value.trim();
+      var voice = document.getElementById("vVoice").value.trim();
+      readSlot(document.getElementById("vSlot1"), function (s1) {
+        if (s1 && s1.error) { errEl.textContent = s1.error; return; }
+        readSlot(document.getElementById("vSlot2"), function (s2) {
+          if (s2 && s2.error) { errEl.textContent = s2.error; return; }
+          var c = { id: "c" + Date.now(), letter: letterFor(characters.length), name: name, voice: voice,
+            slot1: (s1 && s1.dataUrl) ? s1 : null, slot2: (s2 && s2.dataUrl) ? s2 : null };
+          characters.push(c); saveAll();
+          document.getElementById("vaultForm").reset();
+          document.getElementById("vaultOk").textContent = "Character " + c.letter + " - " + c.name + " saved." + ((c.slot1 && c.slot2) ? " She is LOCKED (both slots filled)." : " She is NOT locked yet - both Slot 1 and Slot 2 must be filled.");
+        });
+      });
+    });
+    document.getElementById("videoForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var cid = document.getElementById("vCharacter").value;
+      var c = characterById(cid);
+      var pres = document.getElementById("vPresentation").value;
+      var item = { id: "q" + Date.now() + Math.floor(Math.random() * 999), kind: "video", kindLabel: "Video",
+        specialist: "", contentType: "", category: "None",
+        characterId: c ? c.id : "", characterLabel: c ? ("Character " + c.letter + " - " + c.name) : "None - create a new character",
+        presentation: pres, presentationSentence: presSentence(pres),
+        topic: document.getElementById("vTopic").value.trim(),
+        destLink: "",
+        fields: [
+          ["Topic", document.getElementById("vTopic").value.trim()],
+          ["Length", document.getElementById("vLength").value.trim()],
+          ["Product name", document.getElementById("vProdName").value.trim()],
+          ["Product link", document.getElementById("vProdLink").value.trim()],
+          ["Notes", document.getElementById("vNotes").value.trim()]
+        ],
+        status: "queued", pubStatus: "Draft", pubLink: "", pubDate: "", createdAt: Date.now() };
+      queue.unshift(item); saveAll();
+      document.getElementById("videoSaved").textContent = "Saved to Queue - open the Queue tab and tap Prepare in Chat when you are ready.";
+      document.getElementById("videoForm").reset();
+      fillAllCharacterSelects(); presPreviewSync();
+    });
+    </script>
   </section>
 
   <!-- QUEUE -->
   <section class="page" id="page-queue">
-    <h2>Queue - runs and solo jobs, newest first</h2>
-    <p class="meta">Status is manual - queued, working, or done. The status buttons only change the label - they never execute anything. Execution happens in chat from Run in Chat.</p>
-    <div id="runCardWrap" style="display:none">
-      <h3>Run in Chat card</h3>
-      <div class="card" id="runCard"></div>
-      <pre class="prompt" id="runPrompt"></pre>
-      <button class="btn" id="runCopy" type="button">COPY PROMPT - paste into chat</button>
-      <span class="ok" id="runCopied"></span>
-      <button class="btn light" id="runClose" type="button">Close card</button>
+    <h2>Queue - every job, newest first</h2>
+    <p class="meta">Intake jobs, specialist jobs, and video runs together. Run status (queued / working / done) and publication status (Draft / Approved / Published and verified) are two separate manual labels - changing either one never executes or posts anything. "Published and verified" only saves when a live link AND a verification date are both filled in.</p>
+    <div id="prepWrap" style="display:none">
+      <h3>Prepare in Chat card</h3>
+      <div class="card" id="prepCard"></div>
+      <pre class="prompt" id="prepPrompt"></pre>
+      <button class="btn" id="prepCopy" type="button">COPY PROMPT - paste into chat</button>
+      <span class="ok" id="prepCopied"></span>
+      <button class="btn light" id="prepClose" type="button">Close card</button>
     </div>
     <div id="queueList"></div>
   </section>
@@ -338,39 +546,30 @@ ol.tight{line-height:1.65;margin:8px 0;padding-left:22px}
 <script>
 var STORE_KEY = "skoolFarmV1";
 var STANDING_ORDER = "A Skool post is not done until it has a category, one clear call to action, and - when it points somewhere - a working destination link. Inside The Glam Vault there is no buy talk.";
-var MODES = ["Announcement / New Drop","Prompt Post","Freebie / Resource Drop","Lesson / Tutorial","Engagement / Conversation Starter","Encouragement / Celebration","Product Spotlight"];
-var PRESENTATIONS = ["None","Wearing the product","Holding the product","Using the product","Showing it close to camera","Sitting beside her in frame","Unboxing / opening it","Holding it up by her face","Holding in some scenes and wearing in others"];
-var PRESENTATION_SENTENCES = {
-  "None": "",
-  "Wearing the product": "Wearing the product, not holding it.",
-  "Holding the product": "Holding the product, not wearing it.",
-  "Using the product": "Using the product on camera, not just holding it.",
-  "Showing it close to camera": "Showing the product close to camera.",
-  "Sitting beside her in frame": "The product sits beside her in frame - she is not holding it or wearing it.",
-  "Unboxing / opening it": "Unboxing the product on camera.",
-  "Holding it up by her face": "Holding the product up beside her face.",
-  "Holding in some scenes and wearing in others": "Holding the product in some scenes and wearing it in others - never both in the same shot."
-};
+var CONTENT_TYPES = ["Announcement / New Drop","Prompt Post","Freebie / Resource Drop","Lesson / Tutorial","Engagement / Conversation Starter","Encouragement / Celebration","Product Spotlight"];
+var SPECIALISTS = ["Community Content Planner","Work Hours Coordinator","Lesson & Tutorial Builder","Creative Challenge Designer","Engagement Assistant"];
 var CATEGORIES = ["None","Classroom - Live Resources","THE HANGOUT","PROMPTS","ANNOUNCEMENTS","$2 DOLLAR TUESDAYS","FREEBIES","IMAGES","Words Of Encouragement","Celebrate Your Accomplishments","Ready To Sell Products"];
-var AGENTS = ["Agent 1 - Pinterest Scout","Agent 2 - Image Agent","Agent 3 - Story Agent","Agent 4 - Video Agent","Agent 5 - Skool Copy Agent"];
+var PUB_STATUSES = ["Draft","Approved","Published and verified"];
 
 var characters = [];
 var queue = [];
+var resources = [];
 try {
   var saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-  if (saved && saved.characters) { characters = saved.characters; }
-  if (saved && saved.queue) { queue = saved.queue; }
-} catch (e) { characters = []; queue = []; }
+  if (saved && Array.isArray(saved.characters)) { characters = saved.characters; }
+  if (saved && Array.isArray(saved.queue)) { queue = saved.queue; }
+  if (saved && Array.isArray(saved.resources)) { resources = saved.resources; }
+} catch (e) { characters = []; queue = []; resources = []; }
 
 function saveStore() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify({ characters: characters, queue: queue })); }
+  try { localStorage.setItem(STORE_KEY, JSON.stringify({ characters: characters, queue: queue, resources: resources })); }
   catch (e) { var el = document.getElementById("vaultErr"); if (el) { el.textContent = "Storage is full - a photo may be too large. Try a smaller photo."; } }
 }
 function saveAll() { saveStore(); renderAll(); }
 function letterFor(i) { return String.fromCharCode(65 + i); }
-function characterById(id) { for (var i = 0; i < characters.length; i++) { if (characters[i].id === id) { return characters[i]; } } return null; }
-function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
-function presSentence(choice) { return PRESENTATION_SENTENCES[choice] || ""; }
+function characterById(id) { if (!id) { return null; } for (var i = 0; i < characters.length; i++) { if (characters[i].id === id) { return characters[i]; } } return null; }
+function esc(s) { return (s == null ? "" : String(s)).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
 
 function showTab(name) {
   var pages = document.querySelectorAll("section.page");
@@ -380,7 +579,6 @@ function showTab(name) {
 }
 var tabBtns = document.querySelectorAll("nav.tabs button");
 for (var t = 0; t < tabBtns.length; t++) { tabBtns[t].addEventListener("click", function () { showTab(this.getAttribute("data-tab")); }); }
-document.getElementById("goVault").addEventListener("click", function (e) { e.preventDefault(); showTab("vault"); });
 
 function fillSelect(id, items) {
   var sel = document.getElementById(id); if (!sel) { return; }
@@ -408,301 +606,336 @@ function fillCharacterSelect(sel, firstText) {
   if (prev) { sel.value = prev; }
 }
 function fillAllCharacterSelects() {
-  fillCharacterSelect(document.getElementById("inCharacter"), "None - create a new character");
-  var pickers = document.querySelectorAll(".character-picker");
-  for (var i = 0; i < pickers.length; i++) { fillCharacterSelect(pickers[i], "None - not relevant"); }
+  fillCharacterSelect(document.getElementById("vCharacter"), "None - create a new character");
 }
-function presPreviewSync() {
-  var choice = document.getElementById("inPresentation").value;
-  var s = presSentence(choice);
-  document.getElementById("presPreview").textContent = s ? ("Prompt sentence: \"" + s + "\"") : "None - no presentation sentence on this run.";
-}
-document.getElementById("inPresentation").addEventListener("change", presPreviewSync);
-
-/* ---------- CHARACTER VAULT ---------- */
-function readSlot(fileInput, cb) {
-  var f = fileInput.files && fileInput.files[0];
-  if (!f) { cb(null); return; }
-  var r = new FileReader();
-  r.onload = function () {
-    var dataUrl = r.result;
-    var done = function (finalUrl) { cb({ dataUrl: finalUrl, name: f.name, where: "Uploaded in this dashboard (browser storage)" }); };
-    try {
-      var img = new Image();
-      img.onload = function () {
-        try {
-          var max = 1080;
-          var w = img.naturalWidth, h = img.naturalHeight;
-          if (!w || !h) { done(dataUrl); return; }
-          var scale = Math.min(1, max / Math.max(w, h));
-          if (scale >= 1) { done(dataUrl); return; }
-          var c = document.createElement("canvas");
-          c.width = Math.round(w * scale); c.height = Math.round(h * scale);
-          c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
-          done(c.toDataURL("image/jpeg", 0.85));
-        } catch (e) { done(dataUrl); }
-      };
-      img.onerror = function () { done(dataUrl); };
-      img.src = dataUrl;
-    } catch (e) { done(dataUrl); }
-  };
-  r.onerror = function () { cb({ error: "Could not read that file. Try again." }); };
-  r.readAsDataURL(f);
-}
-document.getElementById("vaultForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  var errEl = document.getElementById("vaultErr"); errEl.textContent = "";
-  document.getElementById("vaultOk").textContent = "";
-  var name = document.getElementById("vName").value.trim();
-  var voice = document.getElementById("vVoice").value.trim();
-  readSlot(document.getElementById("vSlot1"), function (s1) {
-    if (s1 && s1.error) { errEl.textContent = s1.error; return; }
-    readSlot(document.getElementById("vSlot2"), function (s2) {
-      if (s2 && s2.error) { errEl.textContent = s2.error; return; }
-      var c = { id: "c" + Date.now(), letter: letterFor(characters.length), name: name, voice: voice,
-        slot1: (s1 && s1.dataUrl) ? s1 : null, slot2: (s2 && s2.dataUrl) ? s2 : null };
-      characters.push(c); saveAll();
-      document.getElementById("vaultForm").reset();
-      document.getElementById("vaultOk").textContent = "Character " + c.letter + " - " + c.name + " saved." + ((c.slot1 && c.slot2) ? " She is LOCKED (both slots filled)." : " She is NOT locked yet - both Slot 1 and Slot 2 must be filled.");
-    });
-  });
-});
-function renderVault() {
-  var wrap = document.getElementById("vaultList"); wrap.innerHTML = "";
-  document.getElementById("vaultBadge").textContent = characters.length;
-  if (characters.length === 0) { wrap.innerHTML = '<div class="empty">The Character Vault is empty. Add your first character above. A character is NOT locked until both Slot 1 and Slot 2 are filled.</div>'; return; }
-  for (var i = 0; i < characters.length; i++) {
-    (function (c) {
-      var locked = !!(c.slot1 && c.slot2);
-      var d = document.createElement("div"); d.className = "card";
-      d.innerHTML = "<h4>Character " + c.letter + " - " + esc(c.name) + (locked ? " - LOCKED" : " - NOT LOCKED") + "</h4>" +
-        '<p class="meta">Voice: ' + esc(c.voice || "-") + "<br>Slot 1 - Headshot: " + (c.slot1 ? ("filled - " + esc(c.slot1.name)) : "missing") + "<br>Slot 2 - Body reference sheet: " + (c.slot2 ? ("filled - " + esc(c.slot2.name)) : "missing") + (locked ? "" : "<br>A character is NOT locked until both slots are filled.") + "</p>";
-      var th = document.createElement("div"); th.className = "thumbs";
-      th.innerHTML = '<div class="thumb">' + (c.slot1 ? ('<img src="' + c.slot1.dataUrl + '" alt="Slot 1 headshot">') : '<div class="missing">Slot 1 missing</div>') + "<br>Slot 1 - Headshot</div>" +
-        '<div class="thumb">' + (c.slot2 ? ('<img src="' + c.slot2.dataUrl + '" alt="Slot 2 body reference sheet">') : '<div class="missing">Slot 2 missing</div>') + "<br>Slot 2 - Body reference sheet</div>";
-      d.appendChild(th);
-      var del = document.createElement("button"); del.className = "btn light small"; del.type = "button"; del.textContent = "Remove character";
-      del.addEventListener("click", function () {
-        characters = characters.filter(function (x) { return x.id !== c.id; });
-        for (var k = 0; k < characters.length; k++) { characters[k].letter = letterFor(k); }
-        saveAll();
-      });
-      d.appendChild(del);
-      wrap.appendChild(d);
-    })(characters[i]);
-  }
-}
-
-/* ---------- SKOOL INTAKE ---------- */
-document.getElementById("intakeForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  var cid = document.getElementById("inCharacter").value;
-  var c = characterById(cid);
-  var pres = document.getElementById("inPresentation").value;
-  var run = { id: "q" + Date.now(), kind: "full",
-    characterId: c ? c.id : "", characterLabel: c ? ("Character " + c.letter + " - " + c.name) : "None - create a new character",
-    mode: document.getElementById("inMode").value,
-    presentation: pres, presentationSentence: presSentence(pres),
-    topic: document.getElementById("inTopic").value.trim(),
-    length: document.getElementById("inLength").value.trim(),
-    productName: document.getElementById("inProdName").value.trim(),
-    productLink: document.getElementById("inProdLink").value.trim(),
-    refLink: document.getElementById("inRefLink").value.trim(),
-    notes: document.getElementById("inNotes").value.trim(),
-    category: document.getElementById("inCategory").value,
-    destLink: document.getElementById("inDestLink").value.trim(),
-    status: "queued", createdAt: Date.now() };
-  queue.unshift(run); saveAll();
-  document.getElementById("intakeSaved").textContent = "Saved to Queue - open the Queue tab and tap Run in Chat when you are ready.";
-  document.getElementById("intakeForm").reset();
-  fillAllCharacterSelects(); presPreviewSync();
-});
-
-/* ---------- SOLO AGENT FORMS ---------- */
-function workflowLines() {
-  return [
-    "Workflow:",
-    "1. Pick the outfit on Pinterest (one with an Amazon link when there is a product). Copy its picture. Scout member-loved visuals and topics the same way, in guest view.",
-    "2. Lock the outfit IN CHAT, not in the video tool: using my locked character's reference photos, put that character in that exact outfit in chat first. Check face match and outfit match.",
-    "3. Make the outfit reference sheet IN CHAT: from the approved outfit photo, one single 9:16 sheet with front, profile, and three-quarter shots of her in that outfit, all on the same photo. Save as PNG.",
-    "4. Build the video (when the run has one) with the Consistent Character lock: Reference One is her headshot (Slot 1). Reference Two is the chat-made outfit reference sheet. NEVER leave Reference Two empty. No character bible is needed - the reference photos ARE the lock. Do not paste descriptions of her into scene prompts.",
-    "5. Create the scenes from that lock, in script order, 9:16.",
-    "6. The Skool Copy Agent finishes the package: post title, full post body, category pick, one clear call to action, and a lesson outline when the run is a lesson package.",
-    "7. Return the finished Skool package IN CHAT for my approval. Never post, publish, or share it."
-  ];
-}
-function sceneShapeLine(sentence) {
-  var base = "Scene prompt shape: \"Use the reference images and keep the character perfectly consistent. [Scene action only.] [Spoken line, if any.]";
-  if (sentence) { base += " " + sentence + "\""; } else { base += "\" - this run is None, so no presentation sentence is added."; }
-  return base;
-}
-function buildSoloPrompt(o) {
-  var lines = [];
-  lines.push("SKOOL FARM - SOLO JOB. Run this exact job, nothing swapped.");
-  lines.push("Agent: " + o.agent);
-  if (o.characterLabel) { lines.push("Character: " + o.characterLabel); }
-  if (o.presentation) { lines.push("Product Presentation: " + o.presentation); if (o.presentationSentence) { lines.push("Product Presentation sentence: \"" + o.presentationSentence + "\""); } }
-  if (o.category) { lines.push("Skool category: " + o.category); }
-  lines.push("Topic: " + o.topic);
-  if (o.length) { lines.push("Length / format: " + o.length); }
-  if (o.destLink) { lines.push("Destination link: " + o.destLink); }
-  if (o.notes) { lines.push("Notes: " + o.notes); }
-  if (o.presentation) { lines.push(sceneShapeLine(o.presentationSentence)); }
-  lines.push("Standing order: " + STANDING_ORDER);
-  lines.push("Rules: Pinterest in guest view. Outfit lock in chat, outfit sheet in chat as PNG. Consistent Character references - headshot plus outfit sheet, never empty. No character description in scene prompts. One Product Presentation choice per run, wearing and holding never in the same shot. Every image created is PNG. No buy talk inside The Glam Vault. Work Hours: Tuesday and Thursday, 6 to 7 PM ET. Bring the finished work back in chat for Glam's approval. Never post it.");
-  return lines.join("\n");
-}
-var SOLO_CONFIGS = [
-  { formId: "soloForm1", agent: AGENTS[0], charId: "s1Character", topicId: "s1Topic", notesId: "s1Notes" },
-  { formId: "soloForm2", agent: AGENTS[1], charId: "s2Character", topicId: "s2Topic", notesId: "s2Notes" },
-  { formId: "soloForm3", agent: AGENTS[2], charId: "s3Character", topicId: "s3Topic", notesId: "s3Notes", presId: "s3Presentation", lengthId: "s3Length" },
-  { formId: "soloForm4", agent: AGENTS[3], charId: "s4Character", topicId: "s4Topic", notesId: "s4Notes", presId: "s4Presentation", lengthId: "s4Length" },
-  { formId: "soloForm5", agent: AGENTS[4], charId: "s5Character", topicId: "s5Topic", notesId: "s5Notes", catId: "s5Category", lengthId: "s5Length", destId: "s5DestLink" }
-];
-SOLO_CONFIGS.forEach(function (cfg) {
-  document.getElementById(cfg.formId).addEventListener("submit", function (e) {
-    e.preventDefault();
-    var cid = document.getElementById(cfg.charId).value;
-    var c = characterById(cid);
-    var pres = cfg.presId ? document.getElementById(cfg.presId).value : "";
-    var o = { agent: cfg.agent,
-      characterLabel: c ? ("Character " + c.letter + " - " + c.name) : "",
-      presentation: pres, presentationSentence: pres ? presSentence(pres) : "",
-      category: cfg.catId ? document.getElementById(cfg.catId).value : "",
-      topic: document.getElementById(cfg.topicId).value.trim(),
-      length: cfg.lengthId ? document.getElementById(cfg.lengthId).value.trim() : "",
-      destLink: cfg.destId ? document.getElementById(cfg.destId).value.trim() : "",
-      notes: document.getElementById(cfg.notesId).value.trim() };
-    var prompt = buildSoloPrompt(o);
-    var item = { id: "q" + Date.now(), kind: "solo", agent: cfg.agent,
-      characterId: c ? c.id : "", characterLabel: o.characterLabel || "None - not relevant",
-      mode: "", presentation: o.presentation || "None", presentationSentence: o.presentationSentence || "",
-      topic: o.topic, length: o.length, productName: "", productLink: "", refLink: "", notes: o.notes,
-      category: o.category || "None", destLink: o.destLink || "", soloPrompt: prompt,
-      status: "queued", createdAt: Date.now() };
-    queue.unshift(item); saveAll();
-    document.getElementById("soloOut").style.display = "block";
-    document.getElementById("soloPrompt").textContent = prompt;
-    document.getElementById("soloCopied").textContent = "";
-  });
-});
 function copyText(txt, okId) {
-  var done = function () { document.getElementById(okId).textContent = "Copied - paste it into chat."; };
+  var done = function () { var el = document.getElementById(okId); if (el) { el.textContent = "Copied - paste it into chat."; } };
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(done, done); }
     else { done(); }
   } catch (e) { done(); }
 }
-document.getElementById("soloCopy").addEventListener("click", function () { copyText(document.getElementById("soloPrompt").textContent, "soloCopied"); });
 
-/* ---------- QUEUE + RUN IN CHAT ---------- */
-function buildRunPrompt(item) {
-  if (item.kind === "solo" && item.soloPrompt) { return item.soloPrompt; }
-  var c = characterById(item.characterId);
-  var lines = [];
-  lines.push("SKOOL FARM - RUN THIS EXACT RUN for The Glam Vault on Skool. Nothing swapped.");
-  lines.push("Character: " + item.characterLabel);
-  if (c) {
-    lines.push("Voice: " + (c.voice || "-"));
-    lines.push("Slot 1 - Headshot: " + (c.slot1 ? ("filled - " + c.slot1.name) : "MISSING"));
-    lines.push("Slot 2 - Body reference sheet: " + (c.slot2 ? ("filled - " + c.slot2.name) : "MISSING"));
-    lines.push("Locked: " + ((c.slot1 && c.slot2) ? "yes - both slots filled" : "no - a character is NOT locked until both slots are filled"));
+/* ---------- COMMUNITY INTAKE ---------- */
+document.getElementById("intakeForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var dest = val("inDestLink");
+  var item = { id: "q" + Date.now() + Math.floor(Math.random() * 999), kind: "intake", kindLabel: "Intake",
+    specialist: (document.getElementById("inSpecialist").value === "None") ? "" : document.getElementById("inSpecialist").value,
+    contentType: document.getElementById("inContentType").value,
+    category: document.getElementById("inCategory").value,
+    topic: val("inTopic"), destLink: dest,
+    fields: [
+      ["What members get", val("inMembersGet")],
+      ["Destination link", dest],
+      ["Reference link", val("inRefLink")],
+      ["Notes", val("inNotes")]
+    ],
+    status: "queued", pubStatus: "Draft", pubLink: "", pubDate: "", createdAt: Date.now() };
+  queue.unshift(item); saveAll();
+  document.getElementById("intakeSaved").textContent = "Saved to Queue - open the Queue tab and tap Prepare in Chat when you are ready.";
+  document.getElementById("intakeForm").reset();
+  fillSelect("inContentType", ["None"].concat(CONTENT_TYPES));
+  fillSelect("inSpecialist", ["None"].concat(SPECIALISTS));
+  fillSelect("inCategory", CATEGORIES);
+});
+
+/* ---------- SPECIALIST FORMS ---------- */
+var SPEC_CONFIGS = [
+  { formId: "specForm1", name: SPECIALISTS[0],
+    topic: function () { return val("p1Topic"); },
+    category: function () { return document.getElementById("p1Category").value; },
+    destLink: function () { return ""; },
+    fields: function () { return [["Post goal", val("p1Goal")], ["Notes", val("p1Notes")]]; } },
+  { formId: "specForm2", name: SPECIALISTS[1],
+    topic: function () { return val("p2Topic"); },
+    category: function () { return "None"; },
+    destLink: function () { return ""; },
+    fields: function () { return [["Session day", document.getElementById("p2Day").value], ["Member requests (pasted)", val("p2Requests")], ["Notes", val("p2Notes")]]; } },
+  { formId: "specForm3", name: SPECIALISTS[2],
+    topic: function () { return val("p3Topic"); },
+    category: function () { return "Classroom - Live Resources"; },
+    destLink: function () { return val("p3Link"); },
+    fields: function () { return [["What members learn", val("p3Learn")], ["Destination or resource link", val("p3Link")], ["Notes", val("p3Notes")]]; } },
+  { formId: "specForm4", name: SPECIALISTS[3],
+    topic: function () { return val("p4Theme"); },
+    category: function () { return document.getElementById("p4Category").value; },
+    destLink: function () { return ""; },
+    fields: function () { return [["How many days or steps", val("p4Days")], ["How members enter", val("p4Enter")], ["Recognition", val("p4Recognition")], ["Notes", val("p4Notes")]]; } },
+  { formId: "specForm5", name: SPECIALISTS[4],
+    topic: function () { return document.getElementById("p5Thread").value + (val("p5MemberPost") ? "" : ""); },
+    category: function () { return document.getElementById("p5Category").value; },
+    destLink: function () { return ""; },
+    fields: function () { return [["Thread type", document.getElementById("p5Thread").value], ["Member post or comment pasted", val("p5MemberPost")], ["Notes", val("p5Notes")]]; } }
+];
+SPEC_CONFIGS.forEach(function (cfg) {
+  document.getElementById(cfg.formId).addEventListener("submit", function (e) {
+    e.preventDefault();
+    var topic = cfg.topic();
+    var item = { id: "q" + Date.now() + Math.floor(Math.random() * 999), kind: "specialist", kindLabel: cfg.name,
+      specialist: cfg.name, contentType: "", category: cfg.category(),
+      topic: topic, destLink: cfg.destLink(), fields: cfg.fields(),
+      status: "queued", pubStatus: "Draft", pubLink: "", pubDate: "", createdAt: Date.now() };
+    if (cfg.name === SPECIALISTS[4]) {
+      var mp = "";
+      for (var i = 0; i < item.fields.length; i++) { if (item.fields[i][0] === "Member post or comment pasted") { mp = item.fields[i][1]; } }
+      if (!mp) { item.needsDetails = true; item.topic = (item.topic || "Engagement") + ""; }
+    }
+    queue.unshift(item); saveAll();
+    document.getElementById("specOut").style.display = "block";
+    document.getElementById("specPrompt").textContent = buildPreparePrompt(item);
+    document.getElementById("specCopied").textContent = "";
+    document.getElementById(cfg.formId).reset();
+    fillClassSelects("category-select", CATEGORIES);
+  });
+});
+document.getElementById("specCopy").addEventListener("click", function () { copyText(document.getElementById("specPrompt").textContent, "specCopied"); });
+
+/* ---------- RESOURCES ---------- */
+document.getElementById("resForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var r = { id: "r" + Date.now() + Math.floor(Math.random() * 999),
+    title: val("rTitle"), type: document.getElementById("rType").value,
+    link: val("rLink"), notes: val("rNotes"), createdAt: Date.now() };
+  resources.unshift(r); saveAll();
+  document.getElementById("resSaved").textContent = "Resource saved - find it in the list below.";
+  document.getElementById("resForm").reset();
+});
+function copyLink(link, btn) {
+  var done = function () { btn.textContent = "Link copied"; setTimeout(function () { btn.textContent = "Copy link"; }, 2000); };
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(link).then(done, done); }
+    else { done(); }
+  } catch (e) { done(); }
+}
+function renderResources() {
+  var wrap = document.getElementById("resList"); if (!wrap) { return; }
+  wrap.innerHTML = "";
+  document.getElementById("resBadge").textContent = resources.length;
+  if (resources.length === 0) { wrap.innerHTML = '<div class="empty">No resources saved yet. Add your first prompt, guide, app link, replay, freebie, or lesson above.</div>'; return; }
+  for (var i = 0; i < resources.length; i++) {
+    (function (r) {
+      var d = document.createElement("div"); d.className = "card";
+      d.innerHTML = "<h4>" + esc(r.title) + "</h4>" +
+        '<p class="meta">Type: ' + esc(r.type || "None") +
+        "<br>Link: " + (r.link ? ('<a href="' + esc(r.link) + '" target="_blank" rel="noopener">' + esc(r.link) + "</a>") : "-") +
+        (r.notes ? ("<br>Notes: " + esc(r.notes)) : "") + "</p>";
+      var sb = document.createElement("div"); sb.className = "statusbtns";
+      if (r.link) {
+        var cp = document.createElement("button"); cp.type = "button"; cp.textContent = "Copy link";
+        cp.addEventListener("click", function () { copyLink(r.link, cp); });
+        sb.appendChild(cp);
+      }
+      var del = document.createElement("button"); del.type = "button"; del.textContent = "Delete";
+      del.addEventListener("click", function () { resources = resources.filter(function (x) { return x.id !== r.id; }); saveAll(); });
+      sb.appendChild(del);
+      d.appendChild(sb);
+      wrap.appendChild(d);
+    })(resources[i]);
   }
-  lines.push("Mode: " + item.mode);
-  lines.push("Product Presentation: " + item.presentation);
-  if (item.presentationSentence) { lines.push("Product Presentation sentence: \"" + item.presentationSentence + "\""); }
-  lines.push("Topic: " + item.topic);
-  if (item.length) { lines.push("Length / format: " + item.length); }
-  if (item.productName || item.productLink) { lines.push("Product: " + (item.productName || "") + " " + (item.productLink || "")); }
-  if (item.refLink) { lines.push("Reference video link: " + item.refLink); }
-  if (item.notes) { lines.push("Notes: " + item.notes); }
-  lines.push("Skool category: " + item.category);
+}
+
+/* ---------- PROMPT BUILDING ---------- */
+function itemFields(item) {
+  if (item.fields && item.fields.length) { return item.fields; }
+  var f = [];
+  if (item.length) { f.push(["Length / format", item.length]); }
+  var prod = ((item.productName || "") + " " + (item.productLink || "")).trim();
+  if (prod) { f.push(["Product", prod]); }
+  if (item.refLink) { f.push(["Reference link", item.refLink]); }
+  if (item.notes) { f.push(["Notes", item.notes]); }
+  return f;
+}
+function specialistHints(item) {
+  var lines = [];
+  var spec = item.specialist || "";
+  var isLesson = (spec === SPECIALISTS[2]) || (item.contentType === "Lesson / Tutorial");
+  if (isLesson) {
+    lines.push("Classroom rule: lessons go in Live Resources, in dated folders named \"MM/DD/YY - Topic\". Skool folder names cap at 50 characters - keep the suggested folder title at or under 50 characters (50 characters max). The package includes: lesson title, folder title, what members learn, steps in order, any resource links, plus the announcement post that points members to it.");
+  }
+  if (spec === SPECIALISTS[1]) {
+    lines.push("Work Hours rule: sessions are Tuesday and Thursday, 6 to 7 PM ET, build-along style. Turn the topic and the pasted member requests into an ordered agenda with timing and a short prep list. Use only the member requests actually pasted - never invent one.");
+  }
+  if (spec === SPECIALISTS[3]) {
+    lines.push("Challenge rule: plain rules, how to enter by posting, daily or step prompts, and celebration for winners. Recognition: use only the recognition Glam entered in this job - never invent a prize.");
+  }
+  if (spec === SPECIALISTS[0]) {
+    lines.push("Deliverable: one community post in Glam's voice with a title, the full post body, the category pick, and one clear call to action.");
+  }
+  if (spec === SPECIALISTS[4] || item.needsDetails) {
+    if (item.needsDetails) {
+      lines.push("Status note: Needs details - the member post or comment field was left blank on this job. Do NOT invent what a member said. Ask Glam for the member's actual words first, and draft only welcomes, celebrations, encouragement, or conversation starters that do not need a member quote until she pastes it.");
+    } else {
+      lines.push("Engagement rule: reply using only the member words actually pasted in this job - never invent what a member said.");
+    }
+  }
+  return lines;
+}
+function buildPreparePrompt(item) {
+  var lines = [];
+  lines.push("SKOOL FARM - PREPARE IN CHAT. Do this exact job with these exact details, nothing swapped. Work in Glam's voice: personable, human, plain words, heart first.");
+  lines.push("Job kind: " + (item.kindLabel || item.kind || "Intake"));
+  if (item.specialist) { lines.push("Specialist: " + item.specialist); }
+  if (item.contentType) { lines.push("Content type: " + item.contentType); }
+  if (item.mode) { lines.push("Mode: " + item.mode); }
+  lines.push("Skool category: " + (item.category || "None"));
+  lines.push("Topic: " + (item.topic || "-"));
   if (item.destLink) { lines.push("Destination link: " + item.destLink); }
-  lines.push(sceneShapeLine(item.presentationSentence));
-  var wf = workflowLines();
-  for (var i = 0; i < wf.length; i++) { lines.push(wf[i]); }
+  var f = itemFields(item);
+  for (var i = 0; i < f.length; i++) { lines.push(f[i][0] + ": " + (f[i][1] ? f[i][1] : "(blank - not provided)")); }
+  var hints = specialistHints(item);
+  for (var h = 0; h < hints.length; h++) { lines.push(hints[h]); }
+  if (item.presentation !== undefined && item.presentation !== null && typeof videoPromptLines === "function") {
+    var vl = videoPromptLines(item);
+    for (var v = 0; v < vl.length; v++) { lines.push(vl[v]); }
+  }
   lines.push("Standing order: " + STANDING_ORDER);
-  lines.push("Standing rules: Every image created is PNG, never webp. Uploaded Vault photos are read as saved and never rejected when readable. Nothing is posted automatically, ever - posting to Skool always needs Glam's separate approval. No price, discount, or sale claim unless a live price was actually verified. No buy talk inside The Glam Vault. Voice and copy: personable, human, plain words. Community: https://www.skool.com/the-glam-vault-9512 - Classroom curriculum lives under Live Resources. Work Hours: Tuesday and Thursday, 6 to 7 PM ET.");
-  lines.push("End by bringing the finished Skool package back in chat for Glam's approval. Never post it.");
+  lines.push("Standing rules: Nothing is posted automatically, ever. No price, discount, or sale claim unless a live price was actually verified. No buy talk inside The Glam Vault. Never invent a member, a member's words, a prize, or a metric. Community: The Glam Vault, https://www.skool.com/the-glam-vault-9512 - Classroom curriculum lives under Live Resources. Work Hours: Tuesday and Thursday, 6 to 7 PM ET.");
+  lines.push("Finish by bringing the completed work back in chat for Glam's approval. When Glam approves a post or lesson, carry it into Skool on the signed-in browser connection and read it back to prove it landed. Nothing is posted without her OK.");
   return lines.join("\n");
 }
-var currentRunId = null;
-function openRunCard(item) {
-  currentRunId = item.id;
+
+/* ---------- QUEUE + PREPARE IN CHAT ---------- */
+var currentPrepId = null;
+function kindLabelOf(item) {
+  if (item.kindLabel) { return item.kindLabel; }
+  if (item.kind === "video") { return "Video"; }
+  if (item.kind === "specialist") { return item.specialist || "Specialist"; }
+  if (item.kind === "intake") { return "Intake"; }
+  if (item.kind === "solo") { return item.agent || "Solo job"; }
+  return "Full farm run";
+}
+function openPrepare(item) {
+  currentPrepId = item.id;
   item.status = "working"; saveStore(); renderQueue();
-  var c = characterById(item.characterId);
-  var wrap = document.getElementById("runCardWrap"); wrap.style.display = "block";
-  var card = document.getElementById("runCard");
-  var html = "<h4>" + (item.kind === "solo" ? esc(item.agent || "Solo job") : "Full farm run") + " - " + esc(item.topic) + "</h4>";
-  html += '<p class="meta">Character: ' + esc(item.characterLabel) + "<br>Voice: " + esc(c ? (c.voice || "-") : "-") +
-    "<br>Mode: " + esc(item.mode || "-") +
-    "<br>Product Presentation: <strong>" + esc(item.presentation || "None") + "</strong>" +
-    (item.presentationSentence ? ('<br><span class="sentence">"' + esc(item.presentationSentence) + '"</span>') : "") +
-    "<br>Topic: " + esc(item.topic) +
-    "<br>Length / format: " + esc(item.length || "-") +
-    "<br>Product: " + esc(((item.productName || "") + " " + (item.productLink || "")).trim() || "-") +
-    "<br>Reference video link: " + esc(item.refLink || "-") +
-    "<br>Notes: " + esc(item.notes || "-") +
+  var wrap = document.getElementById("prepWrap"); wrap.style.display = "block";
+  var card = document.getElementById("prepCard");
+  var html = "<h4>" + esc(kindLabelOf(item)) + " - " + esc(item.topic || "(no topic)") + "</h4>";
+  html += '<p class="meta">Job kind: ' + esc(kindLabelOf(item)) +
+    (item.specialist ? ("<br>Specialist: " + esc(item.specialist)) : "") +
+    (item.contentType ? ("<br>Content type: " + esc(item.contentType)) : "") +
+    (item.mode ? ("<br>Mode: " + esc(item.mode)) : "") +
     "<br>Skool category: <strong>" + esc(item.category || "None") + "</strong>" +
-    "<br>Destination link: " + esc(item.destLink || "-") +
-    "<br>Status: working</p>";
+    "<br>Topic: " + esc(item.topic || "-") +
+    "<br>Destination link: " + esc(item.destLink || "-");
+  var vl = (typeof videoCardLine === "function") ? videoCardLine(item) : "";
+  if (vl) { html += "<br>" + esc(vl); }
+  var f = itemFields(item);
+  for (var i = 0; i < f.length; i++) { html += "<br>" + esc(f[i][0]) + ": " + esc(f[i][1] || "-"); }
+  if (item.needsDetails) { html += "<br><strong>Needs details</strong> - the member post or comment was left blank."; }
+  html += "<br>Status: working</p>";
+  var c = characterById(item.characterId);
   if (c) {
-    html += '<div class="thumbs"><div class="thumb">' + (c.slot1 ? ('<img src="' + c.slot1.dataUrl + '" alt="Slot 1 headshot">') : '<div class="missing">Slot 1 missing</div>') + "<br>Slot 1 - " + (c.slot1 ? "filled" : "missing") + '</div>' +
-      '<div class="thumb">' + (c.slot2 ? ('<img src="' + c.slot2.dataUrl + '" alt="Slot 2 body reference sheet">') : '<div class="missing">Slot 2 missing</div>') + "<br>Slot 2 - " + (c.slot2 ? "filled" : "missing") + "</div></div>";
-  } else {
-    html += '<p class="meta">No locked character on this run.</p>';
+    html += '<p class="meta">Character: ' + esc(item.characterLabel || ("Character " + c.letter + " - " + c.name)) + "<br>Voice: " + esc(c.voice || "-") + "<br>Slot 1: " + (c.slot1 ? "filled" : "missing") + " - Slot 2: " + (c.slot2 ? "filled" : "missing") + " - " + ((c.slot1 && c.slot2) ? "LOCKED" : "NOT LOCKED") + "</p>";
+    html += '<div class="thumbs"><div class="thumb">' + (c.slot1 ? ('<img src="' + c.slot1.dataUrl + '" alt="Slot 1 headshot">') : '<div class="missing">Slot 1 missing</div>') + "<br>Slot 1 - Headshot</div>" +
+      '<div class="thumb">' + (c.slot2 ? ('<img src="' + c.slot2.dataUrl + '" alt="Slot 2 body reference sheet">') : '<div class="missing">Slot 2 missing</div>') + "<br>Slot 2 - Body reference sheet</div></div>";
   }
   card.innerHTML = html;
-  document.getElementById("runPrompt").textContent = buildRunPrompt(item);
-  document.getElementById("runCopied").textContent = "";
+  document.getElementById("prepPrompt").textContent = buildPreparePrompt(item);
+  document.getElementById("prepCopied").textContent = "";
   try { wrap.scrollIntoView({ behavior: "smooth" }); } catch (e) {}
 }
-document.getElementById("runCopy").addEventListener("click", function () { copyText(document.getElementById("runPrompt").textContent, "runCopied"); });
-document.getElementById("runClose").addEventListener("click", function () { document.getElementById("runCardWrap").style.display = "none"; });
+document.getElementById("prepCopy").addEventListener("click", function () { copyText(document.getElementById("prepPrompt").textContent, "prepCopied"); });
+document.getElementById("prepClose").addEventListener("click", function () { document.getElementById("prepWrap").style.display = "none"; });
 
 function renderQueue() {
   var wrap = document.getElementById("queueList"); wrap.innerHTML = "";
   document.getElementById("queueBadge").textContent = queue.length;
-  if (queue.length === 0) { wrap.innerHTML = '<div class="empty">The Queue is empty. Save a full run from the Skool Intake Form, or a solo job from the Solo Agent Forms.</div>'; return; }
+  if (queue.length === 0) { wrap.innerHTML = '<div class="empty">The Queue is empty. Save a job from Community Intake, a Specialist Form, or the Video Tool, and it will appear here, newest first.</div>'; return; }
   for (var i = 0; i < queue.length; i++) {
     (function (item) {
+      if (!item.pubStatus) { item.pubStatus = "Draft"; }
+      if (!item.status) { item.status = "queued"; }
       var d = document.createElement("div"); d.className = "card";
-      d.innerHTML = "<h4>" + (item.kind === "solo" ? esc(item.agent || "Solo job") : "Full farm run") + " - " + esc(item.topic) + "</h4>" +
-        '<p class="meta">Character: ' + esc(item.characterLabel) +
-        "<br>Mode: " + esc(item.mode || "-") +
-        "<br>Product Presentation: <strong>" + esc(item.presentation || "None") + "</strong>" +
-        (item.presentationSentence ? ('<br><span class="sentence">"' + esc(item.presentationSentence) + '"</span>') : "") +
-        "<br>Topic: " + esc(item.topic) +
-        "<br>Length / format: " + esc(item.length || "-") +
-        "<br>Product: " + esc(((item.productName || "") + " " + (item.productLink || "")).trim() || "-") +
+      var vl = (typeof videoCardLine === "function") ? videoCardLine(item) : "";
+      var vsent = (typeof videoSentence === "function" && item.presentation) ? videoSentence(item) : "";
+      d.innerHTML = "<h4>" + esc(kindLabelOf(item)) + " - " + esc(item.topic || "(no topic)") + "</h4>" +
+        '<p class="meta">Job kind: ' + esc(kindLabelOf(item)) +
+        (item.contentType ? ("<br>Content type: " + esc(item.contentType)) : "") +
+        (item.mode ? ("<br>Mode: " + esc(item.mode)) : "") +
         "<br>Skool category: <strong>" + esc(item.category || "None") + "</strong>" +
+        "<br>Topic: " + esc(item.topic || "-") +
         "<br>Destination link: " + esc(item.destLink || "-") +
-        "<br>Status: <strong>" + esc(item.status) + "</strong></p>";
+        (vl ? ("<br>" + esc(vl)) : "") +
+        (vsent && vl.indexOf(vsent) === -1 ? ('<br><span class="sentence">"' + esc(vsent) + '"</span>') : "") +
+        (item.needsDetails ? "<br><strong>Needs details</strong>" : "") +
+        "<br>Run status: <strong>" + esc(item.status) + "</strong>" +
+        "<br>Publication status: <strong>" + esc(item.pubStatus) + "</strong>" +
+        (item.pubStatus === "Published and verified" ? ("<br>Live link: " + esc(item.pubLink || "-") + "<br>Verification date: " + esc(item.pubDate || "-")) : "") +
+        "</p>";
       var sb = document.createElement("div"); sb.className = "statusbtns";
       ["queued", "working", "done"].forEach(function (st) {
         var b = document.createElement("button"); b.type = "button"; b.textContent = st; if (item.status === st) { b.className = "on"; }
         b.addEventListener("click", function () { item.status = st; saveAll(); });
         sb.appendChild(b);
       });
-      var run = document.createElement("button"); run.className = "btn small"; run.type = "button"; run.textContent = "Run in Chat";
-      run.addEventListener("click", function () { openRunCard(item); });
-      sb.appendChild(run);
+      var prep = document.createElement("button"); prep.className = "btn small"; prep.type = "button"; prep.textContent = "Prepare in Chat";
+      prep.addEventListener("click", function () { openPrepare(item); });
+      sb.appendChild(prep);
       var del = document.createElement("button"); del.className = "btn light small"; del.type = "button"; del.textContent = "Delete";
       del.addEventListener("click", function () { queue = queue.filter(function (x) { return x.id !== item.id; }); saveAll(); });
       sb.appendChild(del);
       d.appendChild(sb);
+
+      var pub = document.createElement("div"); pub.className = "pubbox";
+      var pl = document.createElement("label"); pl.textContent = "Publication status"; pub.appendChild(pl);
+      var ps = document.createElement("select"); ps.className = "pub-select";
+      PUB_STATUSES.forEach(function (s) { var o = document.createElement("option"); o.value = s; o.textContent = s; ps.appendChild(o); });
+      ps.value = PUB_STATUSES.indexOf(item.pubStatus) > -1 ? item.pubStatus : "Draft";
+      pub.appendChild(ps);
+      var pf = document.createElement("div"); pf.className = "pub-fields";
+      pf.style.display = (ps.value === "Published and verified") ? "block" : "none";
+      var ll = document.createElement("label"); ll.textContent = "Live link (required for Published and verified)"; pf.appendChild(ll);
+      var li = document.createElement("input"); li.type = "text"; li.className = "pub-link"; li.placeholder = "https://"; li.value = item.pubLink || ""; pf.appendChild(li);
+      var dl2 = document.createElement("label"); dl2.textContent = "Verification date (required)"; pf.appendChild(dl2);
+      var di = document.createElement("input"); di.type = "date"; di.className = "pub-date"; di.value = item.pubDate || ""; pf.appendChild(di);
+      pub.appendChild(pf);
+      var perr = document.createElement("p"); perr.className = "err pub-err"; pub.appendChild(perr);
+      var saveBtn = document.createElement("button"); saveBtn.className = "btn light small"; saveBtn.type = "button"; saveBtn.textContent = "Save publication status"; saveBtn.style.marginTop = "10px";
+      ps.addEventListener("change", function () {
+        if (ps.value === "Published and verified") {
+          pf.style.display = "block";
+          perr.textContent = "Add the live link and the verification date, then tap Save publication status. It will not save as published until both are filled.";
+          return;
+        }
+        item.pubStatus = ps.value; item.pubLink = li.value.trim(); item.pubDate = di.value;
+        pf.style.display = "none"; perr.textContent = "";
+        saveAll();
+      });
+      saveBtn.addEventListener("click", function () {
+        var want = ps.value;
+        var link = li.value.trim(), date = di.value;
+        if (want === "Published and verified" && (!link || !date)) {
+          perr.textContent = "Published and verified needs a live link AND a verification date. It has NOT been saved as published.";
+          return;
+        }
+        item.pubStatus = want; item.pubLink = link; item.pubDate = date;
+        saveAll();
+      });
+      pub.appendChild(saveBtn);
+      d.appendChild(pub);
       wrap.appendChild(d);
     })(queue[i]);
   }
 }
 
-function renderAll() { fillAllCharacterSelects(); renderVault(); renderQueue(); }
+function renderHomeCounts() {
+  var el = document.getElementById("homeCounts"); if (!el) { return; }
+  if (!queue.length && !resources.length && !characters.length) {
+    el.textContent = "Your farm starts empty: no jobs, resources, or characters saved yet. Add your real work as you go.";
+    return;
+  }
+  el.textContent = "Saved so far: " + queue.length + " queue job(s), " + resources.length + " resource(s), " + characters.length + " character(s).";
+}
 
-fillSelect("inMode", ["None"].concat(MODES));
-fillSelect("inPresentation", PRESENTATIONS);
+function renderAll() { fillAllCharacterSelects(); if (typeof renderVault === "function") { renderVault(); } renderResources(); renderQueue(); renderHomeCounts(); }
+
+fillSelect("inContentType", ["None"].concat(CONTENT_TYPES));
+fillSelect("inSpecialist", ["None"].concat(SPECIALISTS));
 fillSelect("inCategory", CATEGORIES);
-fillClassSelects("presentation-select", PRESENTATIONS);
 fillClassSelects("category-select", CATEGORIES);
+fillSelect("vPresentation", PRESENTATIONS);
+document.getElementById("vPresentation").addEventListener("change", presPreviewSync);
 presPreviewSync();
 renderAll();
 </script>

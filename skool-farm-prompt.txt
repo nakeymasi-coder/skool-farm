@@ -1,278 +1,238 @@
-SKOOL FARM - THE ADAPTED BUILD PROMPT (Glam's Skool edition of the UGC Agent Farm)
-Built from THE AGENT FARM BUILD PROMPT (the master farm prompt by Glam, Glam Hustle Hub),
-adapted for Skool the same way the Facebook, Instagram, and Pinterest farms were adapted.
-Keep the bones. Change only what Skool genuinely changes.
+SKOOL FARM v2 - THE SKOOL-FIRST BUILD PROMPT (Glam's Skool edition, rebuilt)
+Version 2, at Glam's direction on 2026-10-31: "instead of it being UGC
+focused I need it to be more Skool focused." This version supersedes the
+v1 UGC-first prompt (kept as skool-farm-prompt-v1-ugc-backup.txt). The
+Skool-first pattern is Glam's own Glam Vault Community Command Center
+(built 2026-10-25): community work at the center, specialists doing the
+work, video demoted to a small side tool for lesson videos only.
 ================================================================================
-Use this prompt to build / rebuild the dashboard. Where it conflicts with any
-default, THIS prompt wins.
+Use this prompt to build / rebuild the dashboard. Where it conflicts with
+any default - including the old farm master prompt - THIS prompt wins.
 
 THE DASHBOARD
 Build a working SKOOL FARM dashboard - a real tool I can use, not a
-document, not a lesson, not an explanation of one. Build it as ONE
-self-contained interactive page (HTML) that runs when opened. If you cannot
-make a file, output the complete code for that page so I can save and open it.
-Do NOT stop at a plan or an outline - build the finished, working dashboard.
-The farm ships with its own name, icon set, and install manifest from day
-one: name "Skool Farm - Glam Hustle Hub", short name "Skool Farm",
-manifest.webmanifest, icon-512.png, icon-192.png, apple-touch-icon.png,
-and favicon.png in the same folder.
+document, not a lesson, not an explanation of one. ONE self-contained
+interactive page (HTML) that runs when opened. It keeps its own name,
+icon set, and install manifest: name "Skool Farm - Glam Hustle Hub",
+short name "Skool Farm", manifest.webmanifest, icon-512.png,
+icon-192.png, apple-touch-icon.png, favicon.png (unchanged from v1).
 
 WHAT THIS FARM IS
-One dashboard holds my Skool Intake Form, a Character Vault for my locked
-characters, solo forms for each of my 5 agents, and a Queue for my runs.
-The farm's job is to produce SKOOL COMMUNITY PACKAGES for my community
-The Glam Vault (https://www.skool.com/the-glam-vault-9512): community posts,
-announcements, prompt posts, freebies, encouragement, celebrations, and
-Classroom lesson packages under Live Resources. After I submit a run, my AI
-runs the farm WITH me in chat - Pinterest scout, locked character, story,
-image or video, Skool copy - and brings the finished community package back
-for my approval. NOTHING is ever posted automatically. Say that plainly
-inside the dashboard: the dashboard itself is my control panel (intake,
-vault, queue); it does not browse, generate images, make videos, access
-Skool, or post by itself - the work happens in chat from the Run in Chat
-prompts. Posting to Skool always needs my separate approval.
+One dashboard runs my Skool community, The Glam Vault
+(https://www.skool.com/the-glam-vault-9512): planning community posts,
+building Classroom lessons, designing challenges, keeping members talking
+and celebrated, planning Work Hours, and keeping reusable resources in
+one place. Five specialists do the work (below). After I submit a job, my
+AI runs it WITH me in chat and brings the finished post, lesson, or
+package back for my approval. NOTHING is ever posted automatically. Say
+that plainly inside the dashboard: the dashboard is my control panel; it
+does not access Skool, browse, generate, or post by itself - the work
+happens in chat from the Prepare in Chat prompts.
+SKOOL CONNECTION (write this on Home, plainly): "Your Skool is connected
+through the signed-in browser. Connection checked Oct 31, 2026: signed in,
+The Glam Vault opens in admin view. When a post or lesson is ready and
+you approve it, your AI can carry it into Skool on that connection and
+read it back to prove it landed. Nothing is posted without your OK."
 
 DESIGN
-Clean, pretty, phone-first. Light sapphire blue, chrome silver, and pearl
-white, soft ombre gradients, with small butterfly touches. Big readable
-text, big tap-friendly buttons. Everything that relates to video or
-character references is 9:16 vertical. START EMPTY: no test characters,
-no test runs, no sample rows anywhere. I add my real characters and runs
-myself. The dashboard saves in the browser with localStorage key
-skoolFarmV1.
+Clean, pretty, phone-first. Light sapphire blue (#7fb2e8 family), chrome
+silver, and pearl white, soft ombre gradients, small butterfly touches.
+Big readable text, big tap-friendly buttons. START EMPTY for a new user:
+no test members, posts, lessons, resources, or sample rows anywhere.
+The dashboard saves in the browser with localStorage key skoolFarmV1 -
+THE SAME KEY AS V1, and the store shape grows, never resets:
+{characters: [], queue: [], resources: []}. A v1 save ({characters,
+queue} with no resources) MUST load with every character and queue item
+preserved; v1 queue cards render with whatever fields they have.
 
-PAGES THE DASHBOARD MUST HAVE
-HOME: explains the farm, the 5 agents, the 7 modes, the Product
-Presentation rule, the Skool standing order, my real Skool categories,
-the Classroom note, Work Hours, and how Run in Chat works.
-SKOOL INTAKE FORM: the full farm run form (fields below, in order).
-CHARACTER VAULT: locked characters (Character A, B, C...), each reusable
-as that same character.
-SOLO AGENT FORMS: one form per agent, so I can run a single agent job by
-itself.
-QUEUE: every full run and solo job in one list, newest first, with a
-manual status I can set: queued, working, or done. The status button only
-changes the label - it never executes anything. Execution happens in chat.
-RUN IN CHAT: the card a Queue run opens into (see RUN IN CHAT below).
+PAGES (tabs, in this order)
+HOME: explains the farm, the 5 specialists, the 7 content types, my real
+categories, Work Hours, the standing order, the Skool connection note,
+and how Prepare in Chat works.
+COMMUNITY INTAKE: the full community job form (fields below).
+SPECIALISTS: one solo form per specialist (5 forms).
+RESOURCES: my reusable resources vault (add / list / copy link).
+VIDEO TOOL: the small side tool - Character Vault plus a lesson-video
+run form (the old UGC machinery, shrunk to one tab).
+QUEUE: every intake job, specialist job, and video run in one list.
 
 SKOOL FACTS TO BAKE IN (real, do not invent others)
-- My community is The Glam Vault on Skool:
-  https://www.skool.com/the-glam-vault-9512
-- My Skool feed categories: THE HANGOUT, PROMPTS, ANNOUNCEMENTS,
-  $2 DOLLAR TUESDAYS, FREEBIES, IMAGES, Words Of Encouragement,
-  Celebrate Your Accomplishments, Ready To Sell Products.
-- My Classroom home for curriculum is Live Resources (a Classroom course,
-  not a feed category). Lesson packages go there.
-- Work Hours in The Glam Vault: Tuesday and Thursday, 6 to 7 PM ET.
+- Community: The Glam Vault, https://www.skool.com/the-glam-vault-9512
+  (39 members at last check, Oct 31, 2026 - do not hard-code member
+  counts anywhere in copy the farm produces).
+- Feed categories: THE HANGOUT, PROMPTS, ANNOUNCEMENTS, $2 DOLLAR
+  TUESDAYS, FREEBIES, IMAGES, Words Of Encouragement, Celebrate Your
+  Accomplishments, Ready To Sell Products.
+- Classroom: Live Resources is a Classroom course, not a feed category.
+  Lessons go there, in dated folders named "MM/DD/YY - Topic" (Skool
+  folder names cap at 50 characters - keep suggested folder titles at or
+  under 50 characters and say so in the lesson prompt).
+- Work Hours: Tuesday and Thursday, 6 to 7 PM ET, build-along sessions.
 - Inside The Glam Vault, member content is free for members: no buy talk,
-  no prices, no shop links in Vault posts. Selling copy belongs outside
-  the Vault. Bake this into every copied prompt.
+  no prices, no shop links in Vault posts.
 
-SKOOL INTAKE FORM - fields in this exact order:
-1. Locked character picker (or "create a new character")
-2. Mode (the 7 modes below)
-3. PRODUCT PRESENTATION - right after Mode, one single choice: None
-   (product not presented, no presentation sentence), Wearing the product,
-   Holding the product, Using the product, Showing it close to camera,
-   Sitting beside her in frame, Unboxing / opening it, Holding it up by
-   her face, or Holding in some scenes and wearing in others. Wearing and
-   holding never mix in the same shot. Every form category also offers a
-   None option.
+THE 5 SPECIALISTS - in this order:
+1. COMMUNITY CONTENT PLANNER: plans and drafts community posts - prompt
+   posts, announcements, encouragement, celebrations, spotlights - in my
+   voice, each with a title, full body, category pick, and one clear call
+   to action.
+2. WORK HOURS COORDINATOR: plans Tue/Thu 6-7 PM ET Work Hours sessions -
+   turns a topic and member requests into an ordered build-along agenda
+   with timing and a short prep list.
+3. LESSON & TUTORIAL BUILDER: builds Classroom lesson packages for Live
+   Resources - lesson title, folder title (dated pattern, 50 characters
+   max), what members learn, steps in order, any resource links, plus the
+   announcement post that points members to it.
+4. CREATIVE CHALLENGE DESIGNER: designs member challenges - plain rules,
+   how to enter by posting, daily or step prompts, and how winners get
+   celebrated (only the recognition I actually enter - never invent a
+   prize).
+5. ENGAGEMENT ASSISTANT: drafts welcomes, wins celebrations,
+   encouragement, and conversation starters, and replies in my voice. If
+   a job needs an actual member comment or post and I did not paste it,
+   the job saves as "Needs details" in its prompt - never invent what a
+   member said.
+
+THE 7 CONTENT TYPES (the intake's job types; each maps to a home
+category, and every form category offers a None option):
+1. Announcement / New Drop - ANNOUNCEMENTS
+2. Prompt Post - PROMPTS
+3. Freebie / Resource Drop - FREEBIES or a Live Resources lesson
+4. Lesson / Tutorial - Classroom - Live Resources
+5. Engagement / Conversation Starter - THE HANGOUT
+6. Encouragement / Celebration - Words Of Encouragement or Celebrate
+   Your Accomplishments
+7. Product Spotlight - Ready To Sell Products (inside the Vault: shown
+   and celebrated, no buy talk)
+
+COMMUNITY INTAKE FORM - fields in this exact order:
+1. Content Type (the 7 above)
+2. Specialist to assign (None, or one of the 5 specialists)
+3. Skool Category (None, Classroom - Live Resources, or one of my 9 real
+   categories)
 4. Topic
-5. Length / format (for example: post only, a 30 second video post, or a
-   full Classroom lesson package)
-6. Product name and product link, when there is one
-7. Reference video link, when there is one
+5. What members get (the post, lesson, or resource, in plain words)
+6. Destination link, when there is one
+7. Reference link, when there is one
 8. Notes
-9. Skool category - one single choice from my real categories above, or
-   None. Classroom lesson packages pick "Classroom - Live Resources"
-   instead of a feed category.
-10. Destination link, when there is one (a Classroom lesson page, a
-    community post, or - for outside-the-Vault copy only - a shop page)
-Save that one Product Presentation choice on the run. Show it on the Queue
-card and on the Run in Chat card, with its exact prompt sentence (from THE
-SCENE PROMPT SHAPE below). Show the Skool category and the destination
-link on the Queue card and the Run in Chat card too, and bake them into
-the copied prompt.
 
-CHARACTER VAULT - one record per locked character:
-- Character letter and name (for example "Character A - Rosa"), plus a
-  voice description.
-- SLOT 1 - HEADSHOT: one photo, 9:16.
-- SLOT 2 - BODY REFERENCE SHEET: ONE single 9:16 photo - not separate
-  photos - with front, three-quarter, left profile, and right side views
-  of the same person, same outfit, same background, all on that one photo.
-- A character is NOT locked until BOTH slots are filled. Say so on the card.
-- I can upload a character I already have: headshot for Slot 1, single
-  9:16 body reference sheet for Slot 2. My uploads are accepted as any
-  image my browser can open (JPG, PNG, or a WebP my browser reads): read
-  the file directly, shrink a copy in the browser to a storage-sized JPG
-  (max 1080px) when that works, and if the shrink step fails keep the
-  photo exactly as read. A readable photo is never rejected. AI-created
-  images are still PNG only.
-- My characters are ultra realistic, with real skin texture and real hair
-  texture. Every character is African American unless I named a specific
-  existing character. Plus-size stays plus-size, never slimmed down.
-- Within one video, identity, clothing, location, and lighting stay
-  frozen from the reference photos.
+SOLO SPECIALIST FORMS - one per specialist, each producing a clean
+ready-to-copy prompt prefilled from what I entered, and each saving its
+job to the Queue:
+1. Content Planner: topic; Skool category (full list + None); post goal;
+   notes.
+2. Work Hours Coordinator: session day (Tuesday, Thursday, or None);
+   session topic; member requests (pasted); notes.
+3. Lesson Builder: lesson topic; what members learn; destination or
+   resource link; notes.
+4. Challenge Designer: challenge theme; how many days or steps; how
+   members enter; recognition (exactly what I type, may be blank);
+   Skool category (full list + None); notes.
+5. Engagement Assistant: thread type (Welcome, Wins celebration,
+   Encouragement, Conversation starter, Reply to a member, or None);
+   the member's post or comment pasted (may be blank - then the prompt
+   says Needs details); Skool category (full list + None); notes.
 
-THE 5 AGENTS - in this order:
-AGENT 1 - PINTEREST SCOUT: searches Pinterest (guest view, no sign-in) for
-outfits and products for the chosen mode and topic, especially products
-with an Amazon link, and for the visuals and topics my Skool members are
-saving right now. Picks the outfit/product and copies its picture. Does
-not check price or availability at this step.
-AGENT 2 - IMAGE AGENT: creates the person and avatar images in chat -
-character references, the outfit photo (my locked character wearing the
-exact Pinterest outfit), and the outfit reference sheet. All ultra
-realistic, real skin and hair texture, all PNG, all 9:16.
-AGENT 3 - STORY AGENT: writes the hook, the shots, and the script for
-video posts and video lessons, and the story arc for text posts. Labels
-every scene with the run's one Product Presentation choice. Writes scene
-ACTION only for video prompts - never a description of the character.
-AGENT 4 - VIDEO AGENT: makes the video in chat with my AI video tool,
-using the Consistent Character workflow below. Returns the finished video
-in chat for my approval. Never posts it.
-AGENT 5 - SKOOL COPY AGENT: writes the Skool copy package. The POST TITLE,
-clear and warm so members know what it is. The full POST BODY in my voice:
-personable, human, plain words, heart first, saying who it is for and what
-to do with it. The CATEGORY pick from my real category list (or Classroom -
-Live Resources for a lesson package, or None). One clear CALL TO ACTION
-(comment, try it, share a win, join Work Hours). For a lesson package, also
-a short lesson outline: lesson title, what members learn, and the steps in
-order. No price, discount, or sale claim unless a live price was actually
-verified - and no buy talk at all when the copy is for inside The Glam
-Vault.
+RESOURCES (Resource Vault): a simple add form - title; type (Prompt,
+Guide or Code, App Link, Replay, Freebie, Lesson, Other, or None); link;
+notes. Resources list newest first with a copy-link button. Resources
+are stored under "resources" in the same store. They are not Queue jobs.
 
-THE 7 MODES (a mode is a setting, not a separate farm - it changes the
-Pinterest search, the story structure, the shots, and the Skool copy):
-1. Announcement / New Drop - a new lesson, resource, or farm is live in
-   the Vault. Category: ANNOUNCEMENTS.
-2. Prompt Post - a prompt members can copy, run, and share results from.
-   Category: PROMPTS.
-3. Freebie / Resource Drop - a free resource for members. Category:
-   FREEBIES (or a Live Resources lesson package).
-4. Lesson / Tutorial - a teach-it step by step Classroom package under
-   Live Resources, often with a video.
-5. Engagement / Conversation Starter - a question or share thread that
-   gets members talking in THE HANGOUT.
-6. Encouragement / Celebration - kind words in Words Of Encouragement, or
-   a wins thread in Celebrate Your Accomplishments.
-7. Product Spotlight - a product or resource shown off for members
-   (Ready To Sell Products inside the Vault with no buy talk; selling
-   copy with a shop link is for outside the Vault only).
+VIDEO TOOL (one tab, small on purpose): this is the only place the old
+UGC machinery lives, for lesson videos and video posts.
+- CHARACTER VAULT: one record per character - letter and name, voice
+  description; SLOT 1 HEADSHOT (one photo, 9:16); SLOT 2 BODY REFERENCE
+  SHEET (ONE single 9:16 photo, front + three-quarter + left profile +
+  right side, same outfit, same background). NOT LOCKED until both slots
+  are filled - say so on the card. Uploads: read the file directly with
+  FileReader, shrink a copy in-browser to a storage-sized JPG (max
+  1080px) when that works, keep the photo exactly as read when the shrink
+  fails - a readable photo is never rejected, accept="image/*".
+  Characters are ultra realistic, real skin and hair texture, African
+  American unless I named a specific existing character, plus-size stays
+  plus-size.
+- VIDEO RUN FORM: locked character picker (or create new); Product
+  Presentation right after the character pick (None, Wearing, Holding,
+  Using, Showing close to camera, Sitting beside her, Unboxing, Holding
+  up by her face, Holding in some scenes + wearing in others - the full 9,
+  None first, each with its exact scene sentence); topic; length;
+  product name and link; notes. Video runs save to the same Queue.
+- THE SCENE PROMPT SHAPE and workflow live in the video run's copied
+  prompt only: "Use the reference images and keep the character perfectly
+  consistent. [Scene action only.] [Spoken line, if any.]" plus the one
+  presentation sentence for the choice (None adds none). Never describe
+  the character in a scene prompt. Workflow: outfit picked on Pinterest
+  in guest view, locked in chat on the character, outfit sheet made in
+  chat as one PNG, video built from Reference One (headshot) + Reference
+  Two (outfit sheet, never empty), returned in chat for approval, never
+  posted.
 
-SOLO AGENT FORMS: one per agent, 5 in all. The solo Story Agent form and
-the solo Video Agent form must also include the Product Presentation
-choice (the full list, None included). The solo Skool Copy Agent form
-includes the Skool category choice (my real list, Classroom - Live
-Resources, and None). Every solo form produces a clean, ready-to-copy
-prompt for that agent job, prefilled from what I entered.
+QUEUE: all jobs together, newest first. Each card shows: job kind
+(Intake / specialist name / Video), content type when there is one,
+Skool category, topic, destination link, and TWO separate manual
+statuses: run status (queued / working / done - buttons change the label
+only) and publication status (Draft / Approved / Published and verified -
+a manual select; choosing "Published and verified" reveals live link and
+verification date fields, and it saves as published only when both are
+filled). V1 queue items (which have mode / presentation fields instead)
+render on the same card style with the fields they have.
 
-QUEUE: full runs and solo jobs together, newest first. Each card shows:
-character, mode, the Product Presentation choice AND its exact prompt
-sentence, topic, length / format, product, Skool category, destination
-link, and status (queued / working / done - manual buttons).
+PREPARE IN CHAT: every Queue card gets a Prepare in Chat button. It sets
+the run status to "working" and opens a card showing every field of that
+job, plus a COPY PROMPT button. The copied prompt tells the AI to do THAT
+exact job with THOSE exact details, nothing swapped, in my voice, ending
+by bringing the finished work back in chat for my approval - and, when I
+approve a post or lesson, carrying it into Skool on the signed-in browser
+connection and reading it back to prove it landed. Video prompts carry
+the video workflow and scene shape from the Video Tool section. There is
+no scheduled pickup. Do not build one.
 
-RUN IN CHAT: every Queue card gets a Run in Chat button. Pressing it sets
-that run to "working" and opens a Run in Chat card showing: the locked
-character; Slot 1 and Slot 2 status with thumbnails when uploaded; voice;
-mode; Product Presentation choice and its exact prompt sentence; topic;
-length / format; product name and link; reference video link when present;
-notes; Skool category; and destination link. The card has a COPY PROMPT
-button: the copied prompt tells the AI to run THAT exact run with THOSE
-exact details, nothing swapped, following the workflow and standing rules
-below, and ending by bringing the finished Skool package back in chat for
-my approval, never posting it. There is no scheduled pickup. Do not build
-one.
-
-THE WORKFLOW (write this into the dashboard and into every run prompt):
-1. Pick the outfit on Pinterest (one with an Amazon link when there is a
-   product). Copy its picture. Scout member-loved visuals and topics the
-   same way, in guest view.
-2. Lock the outfit IN CHAT, not in the video tool: using my locked
-   character's reference photos, put that character in that exact outfit
-   in chat first. Check face match and outfit match.
-3. Make the outfit reference sheet IN CHAT: from the approved outfit
-   photo, one single 9:16 sheet with front, profile, and three-quarter
-   shots of her in that outfit, all on the same photo. Save as PNG.
-4. Build the video (when the run has one) with the Consistent Character
-   lock: Reference One is her headshot (Slot 1). Reference Two is the
-   chat-made outfit reference sheet. NEVER leave Reference Two empty. No
-   character bible is needed - the reference photos ARE the lock. Do not
-   paste descriptions of her into scene prompts.
-5. Create the scenes from that lock, in script order, 9:16.
-6. The Skool Copy Agent finishes the package: post title, full post body,
-   category pick, one clear call to action, and a lesson outline when the
-   run is a lesson package.
-7. Return the finished Skool package IN CHAT for my approval. Never post,
-   publish, or share it.
-
-THE SCENE PROMPT SHAPE - use this for every scene, and nothing else about her:
-"Use the reference images and keep the character perfectly consistent. [Scene action only.] [Spoken line, if any.] Wearing the product, not holding it."
-The last sentence swaps to match the choice: Holding = "Holding the product, not wearing it." Using = "Using the product on camera, not just holding it." Close-up = "Showing the product close to camera." Beside her = "The product sits beside her in frame - she is not holding it or wearing it." Unboxing = "Unboxing the product on camera." By her face = "Holding the product up beside her face." Mixed scenes = "Holding the product in some scenes and wearing it in others - never both in the same shot." A None run adds no presentation sentence at all.
-NEVER describe her in a scene prompt - no face, hair, skin, body, or outfit
-description. Describing her overrides the references and creates a
-different girl.
-
-PRODUCT PRESENTATION - either/or, never both:
-A Wearing run: every prompt ends "wearing the product, not holding it."
-A Holding run: every prompt ends "holding the product, not wearing it."
-Never show her wearing an outfit while holding that same outfit on a
-hanger. Reject and regenerate any image that shows both. If a video needs
-both, use separate scenes - holding first, wearing later - never the same
-shot. The other choices carry their own sentences (see THE SCENE PROMPT
-SHAPE), and a None run ends with no presentation sentence.
-
-STANDING ORDER, baked into every run prompt and the solo Skool Copy form:
+STANDING ORDER, baked into Home and every copied prompt:
 "A Skool post is not done until it has a category, one clear call to
 action, and - when it points somewhere - a working destination link.
 Inside The Glam Vault there is no buy talk."
 
 STANDING RULES:
-- Every image my AI creates is PNG, never webp. My own uploaded Vault
-  photos are read as I saved them and are never rejected when readable.
 - Nothing is posted automatically, ever. Posting to Skool always needs my
-  separate approval.
-- No price, discount, or sale claim in any caption or copy unless a live
-  price was actually verified. No buy talk inside The Glam Vault.
+  separate approval, and a published item is only marked Published and
+  verified after its live link is read back.
+- No price, discount, or sale claim unless a live price was actually
+  verified. No buy talk inside The Glam Vault.
 - No Payhip anywhere. Links point to glamhustlehub.com or to Skool.
+- Every image my AI creates is PNG. Uploaded Vault photos are read as I
+  saved them and never rejected when readable.
+- Never invent a member, a member's words, a prize, or a metric.
 - Voice and copy everywhere: personable, human, plain words. No em
   dashes - use hyphens instead.
 
-FOOTER (twin buttons, on every farm I build):
-Join button: "Join The Glam Vault" linking to
-https://glamhustlehub.com/products/the-glam-vault
-Shop button: "Shop Glam Hustle Hub" linking to https://glamhustlehub.com
-Footer also states plainly that the dashboard is a control panel only,
-that it does not browse, generate, access Skool, or post by itself, and
-that nothing is ever posted automatically. Small line: "Made with love by
-Indigo, Glam's AI assistant" with a butterfly.
+FOOTER (twin buttons, unchanged from v1):
+"Join The Glam Vault" -> https://glamhustlehub.com/products/the-glam-vault
+"Shop Glam Hustle Hub" -> https://glamhustlehub.com
+Footer states plainly the dashboard is a control panel only, does not
+access Skool, browse, generate, or post by itself, and nothing is ever
+posted automatically. Small line: "Made with love by Indigo, Glam's AI
+assistant" with a butterfly.
 
 ACCEPTANCE CHECKLIST - the build is not done until ALL of these are true:
-One dashboard with Home, Skool Intake Form, Character Vault, Solo Agent
-Forms, and Queue - in my colors, starting completely empty, with its own
-manifest and icon set. 5 solo agent forms. The intake form puts Product
-Presentation right after Mode, and the solo Story and solo Video forms
-carry it too. Every category on a form offers a None option, and the
-Skool category list is my real one plus Classroom - Live Resources and
-None. The Vault enforces Slot 1 headshot + Slot 2 single 9:16 body
-reference sheet before a character counts as locked, and a readable
-uploaded photo is never rejected (browser shrink to JPG max 1080px when
-possible, keep the photo as read when the shrink fails). Queue cards and
-Run in Chat cards show the Product Presentation choice and its exact
-prompt sentence, the Skool category, and the destination link, baked into
-the copied prompts. Run in Chat sets the run to working, shows slot
-thumbnails and status, and copies a complete run prompt. The Skool
-standing order is written into the dashboard and into the copied prompts.
-All workflows are written into the dashboard and the agent prompts:
-Pinterest guest view, outfit lock in chat, outfit sheet in chat as PNG,
-Consistent Character references (headshot + outfit sheet, never empty),
-no character description in scene prompts, one Product Presentation
-choice per run (None allowed), wearing and holding never in the same
-shot. The dashboard states plainly that it does not execute the work by
-itself, does not access Skool, and that nothing is auto-posted. No Payhip
-anywhere. No em dashes anywhere.
+One dashboard with Home, Community Intake, Specialists, Resources, Video
+Tool, and Queue tabs - in my colors, starting completely empty for a new
+user, own manifest and icons unchanged. Exactly 5 solo specialist forms
+with the fields above, in specialist order. The Skool category list is my
+real one plus Classroom - Live Resources and None, and every form
+category offers None. Work Hours (Tue + Thu 6-7 PM ET) appears on Home
+and in the Work Hours Coordinator. The Resource Vault adds and lists
+resources with copy-link, stored under resources in skoolFarmV1. The
+Video Tool holds the Character Vault (Slot 1 + Slot 2 lock rule,
+never-reject upload) and the video run form with Product Presentation
+right after the character pick; Product Presentation appears NOWHERE else
+in the farm. A seeded v1 save loads with characters and queue preserved
+and gains an empty resources list. Queue cards carry run status AND the
+separate publication status, and Published and verified requires a live
+link plus a verification date before it saves as published. Prepare in
+Chat sets working, shows the job's fields, and copies a complete prompt
+containing the standing order. The dashboard states plainly it does not
+access Skool or execute work by itself and that nothing is auto-posted.
+No Payhip. No em dashes anywhere.
 
-Build it exactly like this. If a rule above conflicts with a default you
-would normally use, this prompt wins.
+Build it exactly like this. If a rule above conflicts with a default -
+including the farm master prompt - this prompt wins.
